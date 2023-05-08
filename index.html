@@ -4,16 +4,26 @@
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/svg+xml" href=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/icon-16x16.png">
+    <meta name="theme-color" content="#000"/>
     <link rel="manifest" href="/manifest.json"/>
-    <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.ico"/>
     <meta name="description" content="Search users profiles from github.com"/>
     <title>Github search</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link crossorigin href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print"
+          onload="this.onload=null;this.removeAttribute('media');">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+
     <link href="src/sass/main.scss" rel="stylesheet"/>
     <script defer src="src/js/controller.js" type="module"></script>
-    <meta name="theme-color" content="#000"/>
 </head>
 <body>
 <h1>hello world</h1>
