@@ -1,0 +1,14 @@
+
+:where(a, button, input, select) {
+	--_outline-size  : var(--outline-size, max(1px, 0.15em));
+	--_outline-style : var(--outline-style, solid);
+	--_outline-fg    : var(--outline-fg, currentColor);
+
+	text-decoration  : none;
+	color            : inherit;
+
+	&:focus-visible {
+		outline        : var(--_outline-size) var(--_outline-style) var(--_outline-fg);
+		outline-offset : calc(var(--_outline-size) * 1 + 1px);
+	}
+}
