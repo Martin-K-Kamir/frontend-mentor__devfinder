@@ -1,14 +1,45 @@
+@custom-media --OSdark  (prefers-color-scheme: dark);
+@custom-media --OSlight (prefers-color-scheme: light);
+@custom-media --touch   (hover: none) and (pointer: coarse);
+@custom-media --mouse   (hover) and (pointer: fine);
+
+
+:root {
+	--clr-primary-1 : #0079ff;
+	--clr-accent-1  : #4B6A9B;
+	--clr-accent-2  : #2B3442;
+	--clr-neutral-1 : #ffffff;
+	--clr-neutral-2 : #f6f8ff;
+
+	@media (--OSdark) {
+		--clr-neutral-1 : #1e2a47;
+		--clr-neutral-2 : #141d2f;
+		--clr-accent-1  : #FFFFFF;
+		--clr-accent-2  : #FFFFFF;
+	}
+}
+
+body {
+
+	font-family      : var(--ff-body);
+	font-size        : var(--fs-2);
+	font-weight      : var(--fw-regular);
+	color            : var(--clr-accent-1);
+	background-color : var(--clr-neutral-2);
+}
+
+
 
 :where(a, button, input, select) {
 	--_outline-size  : var(--outline-size, max(1px, 0.15em));
 	--_outline-style : var(--outline-style, solid);
-	--_outline-fg    : var(--outline-fg, currentColor);
+	--_outline-color : var(--outline-color, currentColor);
 
 	text-decoration  : none;
 	color            : inherit;
 
 	&:focus-visible {
-		outline        : var(--_outline-size) var(--_outline-style) var(--_outline-fg);
+		outline        : var(--_outline-size) var(--_outline-style) var(--_outline-color);
 		outline-offset : calc(var(--_outline-size) * 1 + 1px);
 	}
 }
