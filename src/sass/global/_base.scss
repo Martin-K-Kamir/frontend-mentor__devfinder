@@ -4,31 +4,67 @@
 @custom-media --mouse   (hover) and (pointer: fine);
 
 
+/*
+13px 11px - title in box
+13px - dark/light btn
+15px 13px - date, text, link
+16px 14px - btn
+18px 13px - search
+22px 16px - name
+26px 16px - name
+26px - title
+
+desktop
+11
+13
+15
+16
+18
+22
+26
+ */
+
 :root {
-	--clr-primary-1 : #0079ff;
-	--clr-accent-1  : #4B6A9B;
-	--clr-accent-2  : #2B3442;
-	--clr-neutral-1 : #ffffff;
-	--clr-neutral-2 : #f6f8ff;
+	--clr-primary-1   : hsl(0, 0%, 100%);
+	--clr-primary-2   : hsl(227, 100%, 98%);
+	--clr-secondary-1 : hsl(217, 35%, 45%);
+	--clr-secondary-2 : hsl(217, 21%, 21%);
+	--clr-accent-1    : hsl(212, 100%, 50%);
 
 	@media (--OSdark) {
-		--clr-neutral-1 : #1e2a47;
-		--clr-neutral-2 : #141d2f;
-		--clr-accent-1  : #FFFFFF;
-		--clr-accent-2  : #FFFFFF;
+		--clr-primary-1   : hsl(222, 41%, 20%);
+		--clr-primary-2   : hsl(220, 40%, 13%);
+		--clr-secondary-1 : hsl(0, 0%, 100%);
+		--clr-secondary-2 : hsl(0, 0%, 100%);
 	}
+
+	--ff-primary      : 'Space Mono', monospace;
+	--ff-body         : var(--ff-primary);
+	--ff-heading      : var(--ff-primary);
+
+	--f-size-1        : 0.6875rem;
+	--f-size-2        : 0.8125rem;
+	--f-size-3        : 0.9375rem;
+	--f-size-4        : 1rem;
+	--f-size-5        : 1.125rem;
+	--f-size-6        : 1.375rem;
+	--f-size-7        : 1.625rem;
+
+	--f-size-fluid-1  : clamp(0.6875rem, 0.568rem + 0.509vw, 0.8125rem);
+	--f-size-fluid-2  : clamp(0.8125rem, 0.693rem + 0.509vw, 0.9375rem);
+	--f-size-fluid-3  : clamp(0.8123rem, 0.634rem + 0.763vw, 1rem);
+	--f-size-fluid-4  : clamp(0.8125rem, 0.514rem + 1.272vw, 1.125rem);
+	--f-size-fluid-5  : clamp(1rem, 0.642rem + 1.527vw, 1.375rem);
+	--f-size-fluid-6  : clamp(1rem, 0.404rem + 2.545vw, 1.625rem);
 }
 
 body {
-
 	font-family      : var(--ff-body);
 	font-size        : var(--fs-2);
 	font-weight      : var(--fw-regular);
-	color            : var(--clr-accent-1);
-	background-color : var(--clr-neutral-2);
+	color            : var(--clr-secondary-1);
+	background-color : var(--clr-primary-2);
 }
-
-
 
 :where(a, button, input, select) {
 	--_outline-size  : var(--outline-size, max(1px, 0.15em));
