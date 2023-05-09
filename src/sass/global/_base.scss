@@ -19,7 +19,6 @@
 @custom-media --below-xl  (width < 90em);
 @custom-media --below-xxl (width < 120em);
 
-
 :root {
 	--clr-primary-1   : hsl(0, 0%, 100%);
 	--clr-primary-2   : hsl(227, 100%, 98%);
@@ -88,10 +87,7 @@
 	--size-lg: 64em; // 1024px
 	--size-xl: 90em; // 1440px
 	--size-xxl: 120em; // 1920px
-
 }
-
-
 
 body {
 	font-family      : var(--ff-body);

@@ -3,8 +3,6 @@
 }
 
 .flow {
-	--_space : var(--space, 1em);
-	gap      : var(--_space);
-
+	gap      : var(--size, 1em);
 }
 
