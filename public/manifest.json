@@ -1,6 +1,6 @@
 {
-  "name": "GitHub search",
-  "short_name": "GitHub search users site",
+  "name": "devfinder",
+  "short_name": "devfinder",
   "theme_color": "#fff",
   "background_color": "#fff",
   "display": "standalone",

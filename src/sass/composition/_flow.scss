@@ -1,0 +1,10 @@
+:where(.flow) {
+	display : grid;
+}
+
+.flow {
+	--_space : var(--space, 1em);
+	gap      : var(--_space);
+
+}
+
