@@ -11,7 +11,7 @@
     <link rel="manifest" href="/manifest.json"/>
 
     <meta name="theme-color" content="#000"/>
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light dark"/>
 
     <title>Devfinder</title>
     <meta name="description" content="Search users profiles from github.com"/>
@@ -29,47 +29,73 @@
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
 <body>
-<h2 class="f-size-1">Hello world</h2>
-<h2 class="f-size-2">Hello world</h2>
-<h2 class="f-size-3">Hello world</h2>
-<h2 class="f-size-4">Hello world</h2>
-<h2 class="f-size-5">Hello world</h2>
-<h2 class="f-size-6">Hello world</h2>
-<h2 class="f-size-7">Hello world</h2>
-<br>
-<br>
-<br>
-<h2 class="f-size-fluid-1">Hello world</h2>
-<h2 class="f-size-fluid-2">Hello world</h2>
-<h2 class="f-size-fluid-3">Hello world</h2>
-<h2 class="f-size-fluid-4">Hello world</h2>
-<h2 class="f-size-fluid-5">Hello world</h2>
-<h2 class="f-size-fluid-6">Hello world</h2>
-<br>
-<br>
-<br>
-<div class="container">
-    <div class="box size-1"></div>
-    <div class="box size-2"></div>
-    <div class="box size-3"></div>
-    <div class="box size-4"></div>
-    <div class="box size-5"></div>
-    <div class="box size-6"></div>
-    <div class="box size-7"></div>
-    <div class="box size-8"></div>
-    <div class="box size-9"></div>
-    <div class="box size-10"></div>
-    <br>
-    <br>
-    <div class="box size-fluid-1"></div>
-    <div class="box size-fluid-2"></div>
-    <div class="box size-fluid-3"></div>
-    <div class="box size-fluid-4"></div>
-    <div class="box size-fluid-5"></div>
-    <div class="box size-fluid-6"></div>
-    <div class="box size-fluid-7"></div>
-    <div class="box size-fluid-8"></div>
-    <div class="box size-fluid-9"></div>
-</div>
+<header>
+    <h1>Devfinder</h1>
+    <nav>
+        <ul>
+            <li>
+                <button>History</button>
+            </li>
+            <li>
+                <button>Bookmarks</button>
+            </li>
+            <li>
+                <button>Light</button>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <aside>
+        <ul>
+            <li>
+                <div class="profile">
+
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <section>
+        <div aria-hidden="true">Devfinder</div>
+
+        <form action="">
+            <label for="search"><span class="sr-only">search icon</span></label>
+            <input type="text" name="search" id="search" placeholder="Search github username"/>
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="profile" aria-label="profile">
+            <div class="profile__header">
+                <div class="profile__image"></div>
+                <div class="profile__info">
+                    <h2 class="profile__name"></h2>
+                    <a class="profile__twitter"></a>
+                    <p class="profile__created"></p>
+                </div>
+            </div>
+            <div class="profile__body">
+                <p class="profile__desc"></p>
+
+                <div class="profile__stats">
+                    <div class="profile__stat">
+                        <h3>Repos</h3>
+                        <p class="profile__stat__number"></p>
+                    </div>
+                    <div class="profile__stat">
+                        <h3>Followers</h3>
+                        <p class="profile__stat__number"></p>
+                    </div>
+                    <div class="profile__stat">
+                        <h3>Following</h3>
+                        <p class="profile__stat__number"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
 </body>
 </html>
