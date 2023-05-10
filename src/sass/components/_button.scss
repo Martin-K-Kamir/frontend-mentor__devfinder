@@ -1,0 +1,66 @@
+
+.btn {
+	--_font-size     : var(--f-size, 1rem);
+	--_font-weight   : var(--f-weight, bold);
+	--_clr           : var(--clr, hsl(0, 0%, 100%));
+	--_bg            : var(--bg, hsl(0, 0%, 0%));
+
+	display          : inline-flex;
+	align-items      : center;
+	cursor           : pointer;
+	border           : none;
+
+	font-size        : var(--_font-size);
+	font-weight      : var(--_font-weight);
+	line-height      : 1;
+
+	color            : var(--_clr);
+	background-color : var(--_bg);
+
+	transition       : color 150ms ease-in-out, background-color 150ms ease-in-out;
+
+	&:has(svg) {
+		gap : 0.5em;
+	}
+
+	svg {
+		fill  : currentColor;
+		width : 1.825em;
+	}
+
+}
+
+
+.btn[data-type='secondary'] {
+	--f-size       : var(--f-size-2);
+	--f-weight     : var(--fw-bold);
+	--clr          : var(--clr-secondary-1);
+	--bg           : transparent;
+
+	letter-spacing : 0.2em;
+	text-transform : uppercase;
+
+	@media (--mouse) {
+		&:hover {
+			color : #000000;
+			color : color-mix(in srgb, var(--_clr) 90%, #000000 35%);
+		}
+	}
+}
+
+.btn[data-type='primary'] {
+	--f-size      : var(--f-size-fluid-3);
+	--f-weight    : var(--fw-bold);
+	--clr         : #FFFFFF;
+	--bg          : var(--clr-accent-1);
+
+	padding       : 0.75em 1.5em 0.825em;
+	border-radius : 0.625em;
+
+	@media (--mouse) {
+		&:hover {
+			background-color : #000000;
+			background-color : color-mix(in srgb, var(--_bg) 77%, #FFFFFF);
+		}
+	}
+}

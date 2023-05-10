@@ -29,18 +29,48 @@
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
 <body>
-<header>
-    <h1>Devfinder</h1>
-    <nav>
+<header class="header-site">
+    <h1 class="text-lowercase f-size-7 fw-bold line-height-1 hide//above-sm">devfinder</h1>
+    <button class="btn" data-type="secondary">
+        <span>menu</span>
+        <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true" clip-rule="evenodd" fill-rule="evenodd"
+             stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m22 16.75c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75z"
+                  fill-rule="nonzero"/>
+        </svg>
+    </button>
+    <nav aria-label="navigation primary" class="navigation">
         <ul>
-            <li>
-                <button>History</button>
+            <li role="list">
+                <button class="btn" data-type="secondary">
+                    <span>history</span>
+                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true" clip-rule="evenodd" fill-rule="evenodd"
+                         stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m3.503 6.726c1.765-2.836 4.911-4.726 8.495-4.726 5.518 0 9.997 4.48 9.997 9.997 0 5.519-4.479 9.999-9.997 9.999-5.245 0-9.553-4.048-9.966-9.188-.024-.302.189-.811.749-.811.391 0 .715.3.747.69.351 4.369 4.012 7.809 8.47 7.809 4.69 0 8.497-3.808 8.497-8.499 0-4.689-3.807-8.497-8.497-8.497-3.037 0-5.704 1.597-7.206 3.995l1.991.005c.414 0 .75.336.75.75s-.336.75-.75.75h-4.033c-.414 0-.75-.336-.75-.75v-4.049c0-.414.336-.75.75-.75s.75.335.75.75zm7.487.021.007 5.563c0 .288.165.55.424.675l3.978 1.928c.373.18.821.024 1.001-.349s.024-.821-.349-1.001l-3.555-1.725s-.006-5.093-.006-5.093c0-.414-.337-.749-.75-.749-.414 0-.75.337-.75.751z"
+                              fill-rule="nonzero"/>
+                    </svg>
+                </button>
             </li>
             <li>
-                <button>Bookmarks</button>
+                <button class="btn" data-type="secondary">
+                    <span>bookmarks</span>
+                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true" clip-rule="evenodd" fill-rule="evenodd"
+                         stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z"
+                              fill-rule="nonzero"/>
+                    </svg>
+                </button>
             </li>
             <li>
-                <button>Light</button>
+                <button class="btn" data-type="secondary">
+                    <span>history</span>
+                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g fill-rule="nonzero">
+                            <path d="M13.545 6.455c-.9-.9-2.17-1.481-3.545-1.481a4.934 4.934 0 00-3.545 1.481c-.9.9-1.481 2.17-1.481 3.545 0 1.376.582 2.646 1.481 3.545.9.9 2.17 1.481 3.545 1.481a4.934 4.934 0 003.545-1.481c.9-.9 1.481-2.17 1.481-3.545a4.934 4.934 0 00-1.481-3.545zM10 3.413a.7.7 0 00.688-.688V.688A.7.7 0 0010 0a.7.7 0 00-.688.688v2.037a.7.7 0 00.688.688zM15.635 5.344l1.455-1.455a.67.67 0 000-.952.67.67 0 00-.952 0l-1.455 1.455a.67.67 0 000 .952c.238.264.66.264.952 0zM19.312 9.312h-2.037a.7.7 0 00-.688.688.7.7 0 00.688.688h2.037A.7.7 0 0020 10a.7.7 0 00-.688-.688zM15.608 14.656a.67.67 0 00-.952 0 .67.67 0 000 .952l1.455 1.455a.67.67 0 00.952 0 .67.67 0 000-.952l-1.455-1.455zM10 16.587a.7.7 0 00-.688.688v2.037A.7.7 0 0010 20a.7.7 0 00.688-.688v-2.037a.7.7 0 00-.688-.688zM4.365 14.656L2.91 16.111a.67.67 0 000 .952.67.67 0 00.952 0l1.455-1.455a.67.67 0 000-.952c-.238-.264-.66-.264-.952 0zM3.413 10a.7.7 0 00-.688-.688H.688A.7.7 0 000 10a.7.7 0 00.688.688h2.037A.7.7 0 003.413 10zM4.365 5.344a.67.67 0 00.952 0 .67.67 0 000-.952L3.862 2.937a.67.67 0 00-.952 0 .67.67 0 000 .952l1.455 1.455z"/>
+                        </g>
+                    </svg>
+                </button>
             </li>
         </ul>
     </nav>
@@ -57,39 +87,56 @@
         </ul>
     </aside>
     <section>
-        <div aria-hidden="true">Devfinder</div>
+        <div class="text-lowercase f-size-7 fw-bold line-height-1 hide//below-sm" aria-hidden="true">devfinder</div>
 
         <form action="">
             <label for="search"><span class="sr-only">search icon</span></label>
             <input type="text" name="search" id="search" placeholder="Search github username"/>
-            <button type="submit">Search</button>
+            <button type="submit" class="btn" data-type="primary">Search</button>
         </form>
 
         <div class="profile" aria-label="profile">
             <div class="profile__header">
                 <div class="profile__image"></div>
                 <div class="profile__info">
-                    <h2 class="profile__name"></h2>
-                    <a class="profile__twitter"></a>
-                    <p class="profile__created"></p>
+                    <h2 class="profile__name">The Octocat</h2>
+                    <a class="profile__username" href="#">@octocat</a>
+                    <p>Joined 25 Jan 2011</p>
                 </div>
             </div>
             <div class="profile__body">
-                <p class="profile__desc"></p>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.</p>
 
-                <div class="profile__stats">
-                    <div class="profile__stat">
+                <ul class="profile__stats">
+                    <li>
                         <h3>Repos</h3>
-                        <p class="profile__stat__number"></p>
-                    </div>
-                    <div class="profile__stat">
+                        <p>42</p>
+                    </li>
+                    <li>
                         <h3>Followers</h3>
-                        <p class="profile__stat__number"></p>
-                    </div>
-                    <div class="profile__stat">
+                        <p>3482</p>
+                    </li>
+                    <li>
                         <h3>Following</h3>
-                        <p class="profile__stat__number"></p>
-                    </div>
+                        <p>234</p>
+                    </li>
+                </ul>
+
+                <div class="profile__links">
+                    <ul>
+                        <li>
+                            <p>Czech Republic</p>
+                        </li>
+                        <li>
+                            <a href="#">martinkamir.com</a>
+                        </li>
+                        <li>
+                            <p>Not Available</p>
+                        </li>
+                        <li>
+                            <p>@Rondo.cz</p>
+                        </li>
+                    </ul>
                 </div>
 
             </div>

@@ -178,7 +178,40 @@
 	text-transform : lowercase
 }
 
+.line-height-1 {
+	line-height : var(--line-height-1)
+}
+
+.line-height-2 {
+	line-height : var(--line-height-2)
+}
+
+.line-height-3 {
+	line-height : var(--line-height-3)
+}
+
+.fw-light {
+	font-weight : var(--fw-light)
+}
+
+.fw-normal {
+	font-weight : var(--fw-normal)
+}
+
+.fw-bold {
+	font-weight : var(--fw-bold)
+}
+
 // Alignment and Justification
+
+.d-flex {
+	display : flex
+}
+
+.d-grid {
+	display : grid
+}
+
 .text-center {
 	text-align : center
 }
@@ -279,7 +312,7 @@
 	grid-auto-flow : row
 }
 
-@media (--above--xxs) {
+@media (--above-xxs) {
 	.text-center\/\/above-xxs {
 		text-align : center
 	}
@@ -381,7 +414,7 @@
 	}
 }
 
-@media (--above--xs) {
+@media (--above-xs) {
 	.text-center\/\/above-xs {
 		text-align : center
 	}
@@ -483,7 +516,7 @@
 	}
 }
 
-@media (--above--sm) {
+@media (--above-sm) {
 	.text-center\/\/above-sm {
 		text-align : center
 	}
@@ -585,7 +618,7 @@
 	}
 }
 
-@media (--above--md) {
+@media (--above-md) {
 	.text-center\/\/above-md {
 		text-align : center
 	}
@@ -687,7 +720,7 @@
 	}
 }
 
-@media (--above--lg) {
+@media (--above-lg) {
 	.text-center\/\/above-lg {
 		text-align : center
 	}
@@ -789,7 +822,7 @@
 	}
 }
 
-@media (--above--xl) {
+@media (--above-xl) {
 	.text-center\/\/above-xl {
 		text-align : center
 	}
@@ -891,7 +924,7 @@
 	}
 }
 
-@media (--above--xxl) {
+@media (--above-xxl) {
 	.text-center\/\/above-xxl {
 		text-align : center
 	}
@@ -993,7 +1026,7 @@
 	}
 }
 
-@media (--below--xs) {
+@media (--below-xs) {
 	.text-center\/\/below-xs {
 		text-align : center
 	}
@@ -1095,7 +1128,7 @@
 	}
 }
 
-@media (--below--sm) {
+@media (--below-sm) {
 	.text-center\/\/below-sm {
 		text-align : center
 	}
@@ -1197,7 +1230,7 @@
 	}
 }
 
-@media (--below--md) {
+@media (--below-md) {
 	.text-center\/\/below-md {
 		text-align : center
 	}
@@ -1299,7 +1332,7 @@
 	}
 }
 
-@media (--below--lg) {
+@media (--below-lg) {
 	.text-center\/\/below-lg {
 		text-align : center
 	}
@@ -1401,7 +1434,7 @@
 	}
 }
 
-@media (--below--xl) {
+@media (--below-xl) {
 	.text-center\/\/below-xl {
 		text-align : center
 	}
@@ -1503,7 +1536,7 @@
 	}
 }
 
-@media (--below--xxl) {
+@media (--below-xxl) {
 	.text-center\/\/below-xxl {
 		text-align : center
 	}
@@ -1602,6 +1635,96 @@
 
 	.direction-column\/\/below-xxl {
 		grid-auto-flow : row
+	}
+}
+
+// Visibility
+
+.hide {
+	display : none;
+}
+
+.hide\/\/above-xxs {
+	@media (--above-xxs) {
+		display : none;
+	}
+}
+
+.hide\/\/above-xs {
+	@media (--above-xs) {
+		display : none;
+	}
+}
+
+.hide\/\/above-sm {
+	@media (--above-sm) {
+		display : none;
+	}
+}
+
+.hide\/\/above-md {
+	@media (--above-md) {
+		display : none;
+	}
+}
+
+.hide\/\/above-lg {
+	@media (--above-lg) {
+		display : none;
+	}
+}
+
+.hide\/\/above-xl {
+	@media (--above-xl) {
+		display : none;
+	}
+}
+
+.hide\/\/above-xxl {
+	@media (--above-xxl) {
+		display : none;
+	}
+}
+
+.hide\/\/below-xxs {
+	@media (--below-xxs) {
+		display : none;
+	}
+}
+
+.hide\/\/below-xs {
+	@media (--below-xs) {
+		display : none;
+	}
+}
+
+.hide\/\/below-sm {
+	@media (--below-sm) {
+		display : none;
+	}
+}
+
+.hide\/\/below-md {
+	@media (--below-md) {
+		display : none;
+	}
+}
+
+.hide\/\/below-lg {
+	@media (--below-lg) {
+		display : none;
+	}
+}
+
+.hide\/\/below-xl {
+	@media (--below-xl) {
+		display : none;
+	}
+}
+
+.hide\/\/below-xxl {
+	@media (--below-xxl) {
+		display : none;
 	}
 }
 

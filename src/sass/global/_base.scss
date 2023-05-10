@@ -37,8 +37,8 @@
 	--ff-body         : var(--ff-primary);
 	--ff-heading      : var(--ff-primary);
 
-	--fw-regular      : 400;
-	--fw-bold         : 500;
+	--fw-normal      : 400;
+	--fw-bold         : 700;
 
 	--f-size-1        : 0.6875rem; // 11px
 	--f-size-2        : 0.8125rem; // 13px
@@ -92,7 +92,7 @@
 body {
 	font-family      : var(--ff-body);
 	font-size        : var(--f-size-fluid-3);
-	font-weight      : var(--fw-regular);
+	font-weight      : var(--fw-normal);
 	color            : var(--clr-secondary-1);
 	background-color : var(--clr-primary-2);
 }
