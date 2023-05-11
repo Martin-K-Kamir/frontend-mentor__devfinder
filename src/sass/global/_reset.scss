@@ -42,8 +42,7 @@ a:not([class]) {
 img,
 picture,
 video,
-canvas,
-svg {
+canvas {
 	max-inline-size : 100%;
 	block-size      : auto;
 	display         : block;

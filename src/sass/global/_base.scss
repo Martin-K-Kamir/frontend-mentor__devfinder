@@ -37,7 +37,7 @@
 	--ff-body         : var(--ff-primary);
 	--ff-heading      : var(--ff-primary);
 
-	--fw-normal      : 400;
+	--fw-normal       : 400;
 	--fw-bold         : 700;
 
 	--f-size-1        : 0.6875rem; // 11px
@@ -59,34 +59,34 @@
 	--line-height-2   : 1.25;
 	--line-height-3   : 1.5;
 
-	--size-1         : 0.3125rem; // 5px
-	--size-2         : 0.5rem; // 8px
-	--size-3         : 0.625rem; // 10px
-	--size-4         : 1rem; // 16px
-	--size-5         : 1.25rem; // 20px
-	--size-6         : 1.5rem; // 24px
-	--size-7         : 2rem; // 32px
-	--size-8         : 2.1875rem; // 35px
-	--size-9         : 2.5rem; // 40px
-	--size-10        : 3rem; // 48px
+	--size-1          : 0.3125rem; // 5px
+	--size-2          : 0.5rem; // 8px
+	--size-3          : 0.625rem; // 10px
+	--size-4          : 1rem; // 16px
+	--size-5          : 1.25rem; // 20px
+	--size-6          : 1.5rem; // 24px
+	--size-7          : 2rem; // 32px
+	--size-8          : 2.1875rem; // 35px
+	--size-9          : 2.5rem; // 40px
+	--size-10         : 3rem; // 48px
 
-	--size-fluid-1   : clamp(0.5rem, 0.292rem + 0.694vw, 0.625rem); // 8px - 10px
-	--size-fluid-2   : clamp(0.625rem, 0rem + 2.083vw, 1rem); // 10px - 16px
-	--size-fluid-3   : clamp(1rem, 0.583rem + 1.389vw, 1.25rem); // 16px - 20px
-	--size-fluid-4   : clamp(1rem, 0.167rem + 2.778vw, 1.5rem); // 16px - 24px
-	--size-fluid-5   : clamp(1.5rem, 0.667rem + 2.778vw, 2rem); // 24px - 32px
-	--size-fluid-6   : clamp(1.5rem, 0.354rem + 3.819vw, 2.188rem); // 24px - 35px
-	--size-fluid-7   : clamp(1.5rem, -0.167rem + 5.556vw, 2.5rem); // 24px - 40px
-	--size-fluid-8   : clamp(1.5rem, -1rem + 8.333vw, 3rem); // 24px - 48px
-	--size-fluid-9   : clamp(2rem, 0.333rem + 5.556vw, 3rem); // 32px - 48px
+	--size-fluid-1    : clamp(0.5rem, 0.292rem + 0.694vw, 0.625rem); // 8px - 10px
+	--size-fluid-2    : clamp(0.625rem, 0rem + 2.083vw, 1rem); // 10px - 16px
+	--size-fluid-3    : clamp(1rem, 0.583rem + 1.389vw, 1.25rem); // 16px - 20px
+	--size-fluid-4    : clamp(1rem, 0.167rem + 2.778vw, 1.5rem); // 16px - 24px
+	--size-fluid-5    : clamp(1.5rem, 0.667rem + 2.778vw, 2rem); // 24px - 32px
+	--size-fluid-6    : clamp(1.5rem, 0.354rem + 3.819vw, 2.188rem); // 24px - 35px
+	--size-fluid-7    : clamp(1.5rem, -0.167rem + 5.556vw, 2.5rem); // 24px - 40px
+	--size-fluid-8    : clamp(1.5rem, -1rem + 8.333vw, 3rem); // 24px - 48px
+	--size-fluid-9    : clamp(2rem, 0.333rem + 5.556vw, 3rem); // 32px - 48px
 
-	--size-xxs: 20.625em; // 330px
-	--size-xs: 22.5em; // 360px
-	--size-sm: 30em; // 480px
-	--size-md: 48em; // 768px
-	--size-lg: 64em; // 1024px
-	--size-xl: 90em; // 1440px
-	--size-xxl: 120em; // 1920px
+	--size-xxs        : 20.625em; // 330px
+	--size-xs         : 22.5em; // 360px
+	--size-sm         : 30em; // 480px
+	--size-md         : 48em; // 768px
+	--size-lg         : 64em; // 1024px
+	--size-xl         : 90em; // 1440px
+	--size-xxl        : 120em; // 1920px
 }
 
 body {
@@ -113,4 +113,37 @@ body {
 
 :where([class*=align],[class*=direction],[class*=justify]) {
 	display : grid
+}
+
+:where(a, .link) {
+	--_clr      : var(--clr, var(--clr-accent-1, #3F87FF));
+
+	display     : inline-flex;
+	align-items : center;
+	gap         : 0.625em;
+
+	color       : var(--_clr);
+
+	&[href] {
+		@media (--mouse) {
+			&:hover {
+				text-decoration : underline;
+			}
+		}
+	}
+
+	svg {
+		width        : 1.125em;
+		aspect-ratio : 1;
+	}
+}
+
+svg {
+	fill        : currentColor;
+	flex-shrink : 0;
+	block-size  : auto;
+}
+
+[data-disabled='true'] {
+	opacity : 0.65;
 }

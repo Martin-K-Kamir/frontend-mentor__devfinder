@@ -24,28 +24,9 @@
 	}
 
 	svg {
-		fill  : currentColor;
-		width : 1.825em;
+		width        : 1.825em;
 	}
 
-}
-
-
-.btn[data-type='secondary'] {
-	--f-size       : var(--f-size-2);
-	--f-weight     : var(--fw-bold);
-	--clr          : var(--clr-secondary-1);
-	--bg           : transparent;
-
-	letter-spacing : 0.2em;
-	text-transform : uppercase;
-
-	@media (--mouse) {
-		&:hover {
-			color : #000000;
-			color : color-mix(in srgb, var(--_clr) 90%, #000000 35%);
-		}
-	}
 }
 
 .btn[data-type='primary'] {
@@ -54,13 +35,37 @@
 	--clr         : #FFFFFF;
 	--bg          : var(--clr-accent-1);
 
-	padding       : 0.75em 1.5em 0.825em;
+	padding       : 0.75em 1.425em 0.825em;
 	border-radius : 0.625em;
 
 	@media (--mouse) {
 		&:hover {
-			background-color : #000000;
 			background-color : color-mix(in srgb, var(--_bg) 77%, #FFFFFF);
 		}
 	}
 }
+
+.btn[data-type='secondary'] {
+	--f-size       : var(--f-size-2);
+	--f-weight     : var(--fw-bold);
+	--clr          : var(--clr-secondary-2);
+	--bg           : transparent;
+
+	letter-spacing : 0.2em;
+	text-transform : uppercase;
+
+	@media (--OSlight) {
+		--_clr-to-mix : #FFFFFF;
+	}
+
+	@media (--OSdark) {
+		--_clr-to-mix : #000000;
+	}
+
+	@media (--mouse) {
+		&:hover {
+			color : color-mix(in srgb, var(--_clr) 70%, var(--_clr-to-mix));
+		}
+	}
+}
+
