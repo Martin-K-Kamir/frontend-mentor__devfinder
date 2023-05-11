@@ -1,0 +1,20 @@
+
+.navigation {
+	@media (--below-sm) {
+		position   : absolute;
+		inset      : 0;
+		background : hsla(215, 8%, 47%, 0.4);
+		z-index    : 1000;
+	}
+
+	ul {
+		@media (--below-sm) {
+			block-size       : 100%;
+			inline-size      : min(100% - 10ch, 32ch);
+			padding          : var(--size-8, 1em);
+			border-radius    : var(--radius-4) 0 0 var(--radius-4);
+			background-color : var(--clr-primary-2);
+			box-shadow       : 0 16px 32px var(--clr-shadow);
+		}
+	}
+}

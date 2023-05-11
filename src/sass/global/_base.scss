@@ -25,12 +25,15 @@
 	--clr-secondary-1 : hsl(217, 35%, 45%);
 	--clr-secondary-2 : hsl(217, 21%, 21%);
 	--clr-accent-1    : hsl(212, 100%, 50%);
+	--clr-error       : hsl(0, 92%, 62%);
+	--clr-shadow      : rgba(70, 96, 187, 0.2);
 
 	@media (--OSdark) {
 		--clr-primary-1   : hsl(222, 41%, 20%);
 		--clr-primary-2   : hsl(220, 40%, 13%);
 		--clr-secondary-1 : hsl(0, 0%, 100%);
 		--clr-secondary-2 : hsl(0, 0%, 100%);
+		--clr-shadow      : rgba(0, 0, 0, 0.55);
 	}
 
 	--ff-primary      : 'Space Mono', monospace;
@@ -70,7 +73,7 @@
 	--size-9          : 2.5rem; // 40px
 	--size-10         : 3rem; // 48px
 
-	--size-fluid-1    : clamp(0.5rem, 0.292rem + 0.694vw, 0.625rem); // 8px - 10px
+	--size-fluid-1    : clamp(0.375rem, 0.167rem + 0.694vw, 0.5rem); // 6px - 9px
 	--size-fluid-2    : clamp(0.625rem, 0rem + 2.083vw, 1rem); // 10px - 16px
 	--size-fluid-3    : clamp(1rem, 0.583rem + 1.389vw, 1.25rem); // 16px - 20px
 	--size-fluid-4    : clamp(1rem, 0.167rem + 2.778vw, 1.5rem); // 16px - 24px
@@ -87,6 +90,13 @@
 	--size-lg         : 64em; // 1024px
 	--size-xl         : 90em; // 1440px
 	--size-xxl        : 120em; // 1920px
+
+	--radius-1        : 0.5rem;
+	--radius-2        : 0.625rem;
+	--radius-3        : 0.75rem;
+	--radius-4        : 1rem;
+	--radius-circle   : 50%;
+	--radius-pill     : 100vmax;
 }
 
 body {
@@ -133,7 +143,7 @@ body {
 	}
 
 	svg {
-		width        : 1.125em;
+		inline-size  : 1.125em;
 		aspect-ratio : 1;
 	}
 }

@@ -24,6 +24,11 @@
 	--clr : var(--clr-accent-1)
 }
 
+.clr-error {
+	color : var(--clr-error);
+	--clr : var(--clr-error)
+}
+
 .bg-primary-1 {
 	background-color : var(--clr-primary-1);
 }
@@ -43,6 +48,12 @@
 .bg-accent-1 {
 	background-color : var(--clr-accent-1);
 }
+
+.bg-error {
+	background-color : var(--clr-error);
+	--bg             : var(--clr-error)
+}
+
 
 // Font Sizes
 .f-size-1 {
@@ -220,6 +231,7 @@
 .d-grid {
 	display : grid !important
 }
+
 .d-grid-inline {
 	display : inline-grid !important
 }

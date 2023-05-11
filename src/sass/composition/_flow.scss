@@ -1,8 +1,5 @@
-:where(.flow) {
-	display : grid;
-}
 
 .flow {
+	display : grid;
 	gap      : var(--size, 1em);
 }
-

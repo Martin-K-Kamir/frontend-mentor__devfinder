@@ -1,8 +1,37 @@
 
 .search {
+	padding         : var(--size-fluid-1, 1em);
+	border-radius   : var(--radius-4, 1rem);
+	inline-size     : 100%;
+
+	@media (--OSlight) {
+		box-shadow : 0 16px 30px -10px var(--clr-shadow);
+	}
 
 	input {
-		background-color: inherit;
-		border: none;
+		background-color : inherit;
+		border           : none;
+		flex             : 1;
+		text-overflow    : ellipsis;
+		overflow         : hidden;
+		white-space      : nowrap;
+	}
+
+	input::placeholder {
+		color : inherit;
+	}
+
+	input:focus-visible {
+		outline : none;
+	}
+
+	&:has(:where(input:focus-visible, input:not(:placeholder-shown))) p {
+		display : none;
+	}
+
+	svg {
+		inline-size         : 1.25em;
+		margin-inline-start : calc(var(--size) / 1.5);
+		translate           : 0 15%;
 	}
 }
