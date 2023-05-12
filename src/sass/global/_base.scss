@@ -142,6 +142,10 @@ body {
 		}
 	}
 
+	&[data-disabled='true'] {
+		opacity : 0.65;
+	}
+
 	svg {
 		inline-size  : 1.125em;
 		aspect-ratio : 1;
@@ -152,8 +156,4 @@ svg {
 	fill        : currentColor;
 	flex-shrink : 0;
 	block-size  : auto;
-}
-
-[data-disabled='true'] {
-	opacity : 0.65;
 }

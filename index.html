@@ -29,26 +29,10 @@
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
 <body>
-<header class="[ header-site ] [ direction-row align-items-center justify-content-between//below-sm justify-content-end//above-sm ]">
-    <h1 class="clr-secondary-2 text-lowercase f-size-7 fw-bold line-height-1 hide//above-sm">devfinder</h1>
-    <button class="[ btn ] [ hide//above-sm ]" data-type="secondary" aria-controls="navigation-primary" aria-expanded="false" aria-label="open menu">
-        <span>menu</span>
-        <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
-            <use href="/assets/icons/icons.svg#menu"/>
-        </svg>
-    </button>
-<!--    <nav id="navigation-primary" aria-label="navigation primary" class="[ navigation ] [ justify-items-end//below-sm ]">-->
-            <nav id="navigation-primary" aria-label="navigation primary" class="[ navigation ] [ justify-items-end//below-sm hide ]">
-        <ul class="[ flow size-6 align-content-start//below-sm direction-row//above-sm ]" role="list">
-            <li>
-                <button class="[ btn ] [ hide//above-sm ]" data-type="secondary" aria-controls="navigation-primary" aria-expanded="true"
-                        aria-label="close menu">
-                    <span>close</span>
-                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
-                        <use href="/assets/icons/icons.svg#close"/>
-                    </svg>
-                </button>
-            </li>
+<header class="[ header-site ] [ wrapper flow ] [ size-3 align-items-center justify-items-center//below-md direction-row//above-md  justify-content-between//above-md ]">
+    <h1 class="clr-secondary-2 text-lowercase f-size-7 fw-bold line-height-1">devfinder</h1>
+        <nav aria-label="navigation primary" class="[ navigation ] [ justify-items-end//below-sm ]">
+        <ul class="[ flow ] [ size-5  direction-row ]" role="list">
             <li>
                 <button class="btn" data-type="secondary">
                     <span>history</span>
@@ -78,27 +62,16 @@
 </header>
 
 <main>
-    <aside>
-        <ul>
-            <li>
-                <div class="user">
-
-                </div>
-            </li>
-        </ul>
-    </aside>
     <section class="wrapper stack">
-        <h1 class="clr-secondary-2 text-lowercase text-center f-size-7 fw-bold line-height-1 hide//below-sm">devfinder</h1>
-
-        <form class="[ search ] [ bg-primary-1 d-flex-inline size-fluid-3 flow align-items-center ]">
-            <label for="search">
+        <form id="search" class="[ search ] [ flow ] [ bg-primary-1 d-flex-inline size-fluid-3 align-items-center ]">
+            <label for="search-input">
                 <svg class="[ icon ] [ clr-accent-1 ]" focusable="false" width="1em" height="1em" aria-hidden="true">
                     <use href="/assets/icons/icons.svg#search"/>
                 </svg>
                 <span class="sr-only">search icon</span>
             </label>
-            <input type="text" name="search" id="search" placeholder="Search github username"/>
-            <p id="search-error" class="clr-error fw-bold">No results</p>
+            <input type="text" name="search" id="search-input" placeholder="Search github username"/>
+            <p class="clr-error fw-bold hide" data-type="error" data-visible="false"></p>
             <button type="submit" class="btn" data-type="primary">Search</button>
         </form>
 

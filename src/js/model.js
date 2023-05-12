@@ -14,7 +14,7 @@ class State {
 export const state = new State({
     search: {
         // user: 'Octocat'
-        user: 'Martin-K-Kamir'
+        query: 'Martin-K-Kamir'
     },
     user: {},
     bookmarks: [],
@@ -73,4 +73,8 @@ export async function getUserData(username) {
     } catch (err) {
         throw err;
     }
+}
+
+function addToHistory(userObj) {
+    state.set({history: [...state.history, userObj]})
 }
