@@ -1,8 +1,7 @@
 
 .search {
-	padding         : var(--size-fluid-1, 1em);
-	border-radius   : var(--radius-4, 1rem);
-	inline-size     : 100%;
+	padding     : var(--size-fluid-1, 1em);
+	inline-size : 100%;
 
 	@media (--OSlight) {
 		box-shadow : 0 16px 30px -10px var(--clr-shadow);
@@ -11,7 +10,7 @@
 	input {
 		background-color : inherit;
 		border           : none;
-		flex             : 1;
+		inline-size      : 100%;
 		text-overflow    : ellipsis;
 		overflow         : hidden;
 		white-space      : nowrap;

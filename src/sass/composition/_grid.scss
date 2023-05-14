@@ -1,6 +1,5 @@
 .grid {
 	inline-size           : 100%;
 	display               : grid;
-	gap                   : var(--size, 1em);
-	grid-template-columns : repeat(auto-fit, minmax(min(var(--measure, 60ch), 100%), 1fr));
+	grid-template-columns : repeat(auto-fit, minmax(min(var(--size-content, 30ch), 100%), 1fr));
 }

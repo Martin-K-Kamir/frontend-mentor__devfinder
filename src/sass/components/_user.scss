@@ -1,18 +1,25 @@
 
 .user {
-	border-radius  : var(--radius-4, 1rem);
+	position       : relative;
 	padding-block  : var(--size-fluid-9, 2rem);
 	padding-inline : var(--size-fluid-8, 2rem);
 
-	@media (--above-md) {
-		grid-template-areas   :
+	@media (--OSlight) {
+		box-shadow : 0 16px 30px -10px var(--clr-shadow);
+	}
+
+	&:has(:not(:only-child)) {
+		@media (--above-md) {
+			grid-template-areas   :
 			'avatar info'
 			'avatar body';
-		grid-template-columns : auto 1fr;
-		grid-template-rows    : auto 1fr;
+			grid-template-columns : auto 1fr;
+			grid-template-rows    : auto 1fr;
+		}
 	}
 
 	&__header {
+
 		@media (--above-md) {
 			display : contents;
 		}
@@ -38,8 +45,49 @@
 	}
 
 	&__avatar {
-		border-radius : var(--radius-circle, 50%);
-		inline-size   : clamp(4.375rem, -0.521rem + 16.319vw, 7.313rem);
+		inline-size : clamp(4.375rem, -0.521rem + 16.319vw, 7.313rem);
 	}
 
+	&__stats {
+		padding       : var(--size-fluid-2, 1.5rem);
+		text-overflow : ellipsis;
+		overflow      : hidden;
+		white-space   : nowrap;
+
+		li {
+			text-overflow : ellipsis;
+			overflow      : hidden;
+			white-space   : nowrap;
+		}
+	}
+
+	// Fixing the issue when link is too long and ellipsis not showing
+	&__links .link {
+		display       : block;
+		position      : relative;
+		text-overflow : ellipsis;
+		overflow      : hidden;
+		white-space   : nowrap;
+
+		svg {
+			position          : absolute;
+			inset-block-start : 50%;
+			translate         : 0 -50%;
+		}
+
+		span {
+			padding-inline-start : 1.825em;
+		}
+	}
+
+	.btn {
+		--clr          : var(--clr-accent-1);
+
+		position : absolute;
+		inset: 0.325rem 0.325rem auto auto;
+
+		@media (--above-sm) {
+			inset: 0.825rem 0.825rem auto auto;
+		}
+	}
 }

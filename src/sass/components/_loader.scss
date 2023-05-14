@@ -1,0 +1,33 @@
+.loader {
+	--_s               : max(0.2em, 0.2rem);
+	--_clr             : var(--clr-loader, var(--clr, currentColor));
+
+	display            : inline-flex;
+	inline-size        : min-content;
+	block-size         : min-content;
+	position           : relative;
+	color              : var(--_clr);
+	padding-inline-end : calc(var(--_s) * 7);
+
+	&::before {
+		content          : '';
+		position         : absolute;
+		inset            : auto calc(var(--_s) * 5) 0.4em auto;
+		inline-size      : var(--_s);
+		aspect-ratio     : 1;
+		background-color : var(--_clr);
+		animation        : loader 1000ms linear infinite;
+	}
+
+	@keyframes loader {
+		0% {
+			box-shadow : calc(var(--_s) * 2) 0 rgba(255, 255, 255, 0), calc(var(--_s) * 4) 0 rgba(255, 255, 255, 0);
+		}
+		50% {
+			box-shadow : calc(var(--_s) * 2) 0 var(--_clr), calc(var(--_s) * 4) 0 rgba(255, 255, 255, 0);
+		}
+		100% {
+			box-shadow : calc(var(--_s) * 2) 0 var(--_clr), calc(var(--_s) * 4) 0 var(--_clr);
+		}
+	}
+}

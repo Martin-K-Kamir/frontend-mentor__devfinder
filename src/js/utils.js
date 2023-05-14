@@ -1,4 +1,5 @@
-import { TIMEOUT_SEC } from './config.js';
+import {API_TOKEN, TIMEOUT_SEC} from './config.js';
+import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 
 const timeout = function (s) {
     return new Promise(function (_, reject) {
@@ -8,14 +9,17 @@ const timeout = function (s) {
     });
 };
 
-export const getJSON = async function (url) {
+export const getJSON = async function (username) {
     try {
-        const fetchPro = fetch(url);
-        const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
-        const data = await res.json();
+        const octokit = new Octokit({auth: API_TOKEN})
+        const fetch = octokit.request('GET /users/{username}', {
+            username: username,
+            headers: {'X-GitHub-Api-Version': '2022-11-28'}
+        })
 
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        return data;
+        const res = await Promise.race([fetch, timeout(TIMEOUT_SEC)]);
+        if (res.status !== 200) throw new Error(`${res.message} (${res.status})`);
+        return res.data;
     } catch (err) {
         throw err;
     }

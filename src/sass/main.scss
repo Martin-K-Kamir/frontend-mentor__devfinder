@@ -2,18 +2,17 @@
 @import 'global/reset';
 @import 'global/base';
 
-@import 'composition/even-columns';
 @import 'composition/flow';
 @import 'composition/grid';
 @import 'composition/stack';
-@import 'composition/switcher';
 @import 'composition/wrapper';
 
 @import 'components/button';
 @import 'components/user';
 @import 'components/search';
+@import 'components/loader';
 @import 'components/navigation';
-@import 'components/header-site';
-@import 'components/spinner';
+@import 'components/message';
 
 @import 'global/utils';
+

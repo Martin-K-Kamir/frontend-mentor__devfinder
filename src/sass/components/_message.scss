@@ -1,0 +1,64 @@
+
+.message {
+	--clr-btn              : #FFFFFF;
+	--_transition-duration : 300ms;
+	--_transition-timing   : ease-in-out;
+
+	position               : fixed;
+	margin                 : 0;
+	inline-size            : 100%;
+	inset                  : 0 auto auto 50%;
+	z-index                : 1000;
+	translate              : -50% 0;
+	padding-block          : var(--size-fluid-2, 1em);
+	border-radius          : 0 0 var(--radius-2) var(--radius-2);
+	color                  : var(--clr-btn);
+
+	&__wrapper {
+		@media (--above-md) {
+			padding-inline : var(--size-fluid-6, 1em);
+		}
+
+		@media (--below-md) {
+			inline-size : min(100% - 1.5rem * 2, 45.625rem);
+			margin-inline : auto;
+		}
+	}
+
+	&__content {
+		inline-size : 100%;
+	}
+
+	&[data-visible='false'] {
+		opacity    : 0;
+		visibility : hidden;
+		transform  : translateY(-100%);
+		transition : transform var(--_transition-duration) var(--_transition-timing), opacity 0ms var(--_transition-duration), visibility 0ms var(--_transition-duration);
+	}
+
+	&[data-visible='true'] {
+		opacity    : 1;
+		visibility : visible;
+		transform  : translateY(0%);
+		transition : transform var(--_transition-duration) var(--_transition-timing), opacity 0ms 0ms, visibility 0ms 0ms;
+	}
+
+	&[data-type='default'] {
+		background-color : var(--clr-accent-1);
+	}
+
+	&[data-type='error'] {
+		background-color : var(--clr-error);
+	}
+
+	&[data-type='success'] {
+		background-color : var(--clr-success);
+	}
+
+	&[data-type='warning'] {
+		background-color : var(--clr-warning);
+	}
+
+	.btn {
+	}
+}

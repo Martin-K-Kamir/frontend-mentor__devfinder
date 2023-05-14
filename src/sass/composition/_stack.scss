@@ -1,4 +1,6 @@
 .stack {
+	--_stack-size : var(--stack-size, var(--size, 1em));
+
 	display         : flex;
 	flex-direction  : column;
 	justify-content : flex-start;
@@ -8,6 +10,18 @@
 	}
 
 	& > * + * {
-		margin-block-start : var(--size, 1em);
+		margin-block-start : var(--_stack-size);
+	}
+
+	&[data-stack-first]> *:first-child {
+		margin-block-start : var(--_stack-size)
+	}
+
+	&[data-inherit-size] {
+		--stack-size : inherit;
+	}
+
+	&[data-initial-size] {
+		--stack-size : initial;
 	}
 }

@@ -1,20 +1,38 @@
 
-//.navigation {
-//	@media (--below-sm) {
-//		position   : absolute;
-//		inset      : 0;
-//		background : hsla(215, 8%, 47%, 0.4);
-//		z-index    : 1000;
-//	}
-//
-//	ul {
-//		@media (--below-sm) {
-//			block-size       : 100%;
-//			inline-size      : min(100% - 10ch, 32ch);
-//			padding          : var(--size-8, 1em);
-//			border-radius    : var(--radius-4) 0 0 var(--radius-4);
-//			background-color : var(--clr-primary-2);
-//			box-shadow       : 0 16px 32px var(--clr-shadow);
-//		}
-//	}
-//}
+.navigation {
+	overflow    : auto;
+	inline-size : 100%;
+
+	@media (--touch) {
+		--_bg                 : var(--bg, var(--clr-primary-2, #FFFFFF));
+		--_size-shadow        : 1.125em;
+		--_t                  : rgba(0, 0, 0, 0);
+
+		scrollbar-width       : none;
+		overflow-scrolling    : touch;
+
+		@media (--OSlight) {
+			--_clr-shadow : hsla(0, 0%, 29%, 0.25);
+		}
+
+		@media (--OSdark) {
+			--_clr-shadow : hsla(0, 0%, 69%, 0.25);
+		}
+
+		background            : linear-gradient(to right, var(--_bg), var(--_bg), var(--_t) calc(var(--_size-shadow) * 2)),
+		radial-gradient(farthest-side at 0 50%, var(--_clr-shadow), var(--_t)),
+		linear-gradient(to left, var(--_bg), var(--_bg), var(--_t) calc(var(--_size-shadow) * 2)),
+		radial-gradient(farthest-side at 100% 50%, var(--_clr-shadow), var(--_t)) 100%;
+		background-color      : var(--_bg);
+		background-repeat     : no-repeat;
+		background-attachment : local, scroll, local, scroll;
+		background-size       : 100% 100%, var(--_size-shadow) 100%, 100% 100%, var(--_size-shadow) 100%;
+	}
+
+	&::-webkit-scrollbar {
+		@media (--touch) {
+			inline-size : 0;
+			block-size  : 0;
+		}
+	}
+}

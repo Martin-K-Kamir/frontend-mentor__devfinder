@@ -1,5 +1,5 @@
 import {getJSON} from './utils.js';
-import {API_URL} from './config.js';
+import {API_URL, INIT_USER, HISTORY_LIMIT} from './config.js';
 
 class State {
     constructor(initValue) {
@@ -12,10 +12,7 @@ class State {
 }
 
 export const state = new State({
-    search: {
-        // user: 'Octocat'
-        query: 'Martin-K-Kamir'
-    },
+    query: INIT_USER,
     user: {},
     bookmarks: [],
     history: [],
@@ -32,10 +29,9 @@ function formatDate(date) {
 }
 
 export function getUserObject(data) {
-    console.log(data)
     return {
         id: data.id,
-        url: data.url,
+        url: data.html_url,
         userName: data.login,
         fullName: data.name,
         bio: data.bio,
@@ -44,6 +40,7 @@ export function getUserObject(data) {
         repos: data.public_repos,
         followers: data.followers,
         following: data.following,
+        bookmarked: false,
         links: [
             {
                 icon: 'location',
@@ -69,12 +66,34 @@ export function getUserObject(data) {
 
 export async function getUserData(username) {
     try {
-        return await getJSON(`${API_URL}/${username}`);
+        // return await getJSON(`${API_URL}/${username}`);
+        return await getJSON(username);
     } catch (err) {
         throw err;
     }
 }
 
-function addToHistory(userObj) {
-    state.set({history: [...state.history, userObj]})
+export function getHistory(userObj) {
+    if (state.history.at(-1)?.id === userObj.id) return [...state.history];
+
+    if (state.history.find(user => user.id === userObj.id)) {
+        return [...state.history.filter(user => user.id !== userObj.id), userObj];
+    }
+
+    return [...state.history, userObj].slice(-HISTORY_LIMIT);
+}
+
+export function getBookmarks(id) {
+    if (state.bookmarks.find(user => user.id === id)) {
+        return [...state.bookmarks.filter(user => user.id !== id)];
+    }
+
+    const bookmarked = state.user.bookmarked ? state.user : {...state.user, bookmarked: true};
+
+    return [...state.bookmarks, bookmarked];
+}
+
+export function store(location, data) {
+    localStorage.setItem(location, JSON.stringify(data));
+    return data;
 }

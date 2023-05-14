@@ -2,8 +2,8 @@
 .btn {
 	--_font-size     : var(--f-size, 1rem);
 	--_font-weight   : var(--f-weight, bold);
-	--_clr           : var(--clr, hsl(0, 0%, 100%));
-	--_bg            : var(--bg, hsl(0, 0%, 0%));
+	--_clr           : var(--clr-btn, var(--clr, hsl(0, 0%, 100%)));
+	--_bg            : var(--bg-btn, var(--bg, hsl(0, 0%, 0%)));
 
 	display          : inline-flex;
 	align-items      : center;
@@ -16,6 +16,7 @@
 
 	color            : var(--_clr);
 	background-color : var(--_bg);
+	border-radius    : var(--radius-1, 0.425em);
 
 	transition       : color 150ms ease-in-out, background-color 150ms ease-in-out;
 
@@ -30,13 +31,12 @@
 }
 
 .btn[data-type='primary'] {
-	--f-size      : var(--f-size-fluid-3);
-	--f-weight    : var(--fw-bold);
-	--clr         : #FFFFFF;
-	--bg          : var(--clr-accent-1);
+	--f-size   : var(--f-size-fluid-3);
+	--f-weight : var(--fw-bold);
+	--clr      : #FFFFFF;
+	--bg       : var(--clr-accent-1);
 
-	padding       : 0.75em 1.425em 0.825em;
-	border-radius : var(--radius-2);
+	padding    : 0.75em 1.425em 0.825em;
 
 	@media (--mouse) {
 		&:hover {
@@ -53,18 +53,11 @@
 
 	letter-spacing : 0.2em;
 	text-transform : uppercase;
-
-	@media (--OSlight) {
-		--_clr-to-mix : #FFFFFF;
-	}
-
-	@media (--OSdark) {
-		--_clr-to-mix : #000000;
-	}
+	padding        : 0.45em 1em 0.5em;
 
 	@media (--mouse) {
 		&:hover {
-			color : color-mix(in srgb, var(--_clr) 70%, var(--_clr-to-mix));
+			background-color : color-mix(in srgb, var(--_clr) 5%, hsla(0, 0%, 53%, 0.1));
 		}
 	}
 }

@@ -26,14 +26,18 @@
 	--clr-secondary-2 : hsl(217, 21%, 21%);
 	--clr-accent-1    : hsl(212, 100%, 50%);
 	--clr-error       : hsl(0, 92%, 62%);
-	--clr-shadow      : rgba(70, 96, 187, 0.2);
+	--clr-success     : hsl(122, 39%, 49%);
+	--clr-warning     : hsl(45, 100%, 50%);
+	--clr-shadow      : hsla(227, 46%, 50%, 0.2);
+	--clr-invert      : hsl(0, 0%, 0%);
 
 	@media (--OSdark) {
 		--clr-primary-1   : hsl(222, 41%, 20%);
 		--clr-primary-2   : hsl(220, 40%, 13%);
 		--clr-secondary-1 : hsl(0, 0%, 100%);
 		--clr-secondary-2 : hsl(0, 0%, 100%);
-		--clr-shadow      : rgba(0, 0, 0, 0.55);
+		--clr-shadow      : hsla(0, 0%, 0%, 0.55);
+		--clr-invert      : hsl(0, 0%, 100%);
 	}
 
 	--ff-primary      : 'Space Mono', monospace;
@@ -91,10 +95,13 @@
 	--size-xl         : 90em; // 1440px
 	--size-xxl        : 120em; // 1920px
 
-	--radius-1        : 0.5rem;
-	--radius-2        : 0.625rem;
-	--radius-3        : 0.75rem;
-	--radius-4        : 1rem;
+	--size-content-1  : 22ch;
+	--size-content-2  : 45ch;
+	--size-content-3  : 60ch;
+
+	--radius-1        : 0.625rem;
+	--radius-2        : 1rem;
+	--radius-3        : 1.25rem;
 	--radius-circle   : 50%;
 	--radius-pill     : 100vmax;
 }
@@ -105,6 +112,25 @@ body {
 	font-weight      : var(--fw-normal);
 	color            : var(--clr-secondary-1);
 	background-color : var(--clr-primary-2);
+}
+
+::-webkit-scrollbar {
+	background-color : transparent;
+	block-size       : 0.4rem;
+	inline-size      : 0.7rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color : color-mix(in srgb, var(--clr-primary-1) var(--_clr-strength), color-mix(in srgb, var(--clr-invert) 5%, hsla(0, 0%, 53%, 0.5)));
+	border-radius    : var(--radius-pill);
+
+	@media (--OSlight) {
+		--_clr-strength : 10%;
+	}
+
+	@media (--OSdark) {
+		--_clr-strength : 60%;
+	}
 }
 
 :where(a, button, input, select) {

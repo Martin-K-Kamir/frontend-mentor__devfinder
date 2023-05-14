@@ -2,13 +2,8 @@ import userView from './userView.js';
 
 export default class View {
     _data;
-    _callRender = false;
-
-    timerId = null;
-
     render(data, render = true) {
-        if (!data || (Array.isArray(data) && data.length === 0))
-            return this.renderError();
+        if (!data || (Array.isArray(data) && data.length === 0)) return;
 
         this._data = data;
         const markup = this._generateMarkup();
@@ -20,10 +15,6 @@ export default class View {
     }
 
     update(data) {
-
-        if(this._callRender) {
-            this.render(data);
-        }
 
         this._data = data;
         const newMarkup = this._generateMarkup();
@@ -50,38 +41,5 @@ export default class View {
 
     _clear() {
         this._parentElement.innerHTML = '';
-    }
-
-    renderSpinner(delay = false) {
-        if (!navigator.onLine) return;
-
-        const markup = `<span class="spinner"></span>`;
-
-        this.timerId = setTimeout(() => {
-            this._clear();
-            this._parentElement.insertAdjacentHTML('afterbegin', markup);
-            this._callRender = true;
-
-        }, delay ? 1000 : 0);
-
-    }
-
-    renderError(message = this._errorMessage) {
-        if (this._errorElement) {
-            this._errorElement.textContent = message;
-            this._errorElement.classList.remove('hide');
-        }
-
-        if (!this._errorElement) {
-            const markup = `
-                <p class="clr-error fw-bold" data-type="error">${message}</p>
-            `;
-            this._clear();
-            this._parentElement.insertAdjacentHTML('afterbegin', markup);
-        }
-    }
-
-    renderMessage(message = this._message) {
-        return null;
     }
 }

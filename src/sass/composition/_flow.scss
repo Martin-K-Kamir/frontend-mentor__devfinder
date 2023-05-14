@@ -1,5 +1,15 @@
 
 .flow {
+	--_flow-size : var(--flow-size, var(--size, 1em));
+
 	display : grid;
-	gap      : var(--size, 1em);
+	gap      : var(--_flow-size);
+
+	&[data-inherit-size] {
+		--flow-size : inherit;
+	}
+
+	&[data-initial-size] {
+		--flow-size : 1em;
+	}
 }

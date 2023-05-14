@@ -26,13 +26,15 @@
     </noscript>
 
     <link href="src/sass/main.scss" rel="stylesheet"/>
+
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
-<body>
-<header class="[ header-site ] [ wrapper flow ] [ size-3 align-items-center justify-items-center//below-md direction-row//above-md  justify-content-between//above-md ]">
+<body class="[ stack ] [ size-8 ]" data-inherit-size data-stack-first>
+
+<header class="[ header-site ] [ wrapper flow ] [ size-5 align-items-center justify-items-center//below-md justify-content-center//below-md direction-row//above-md justify-content-between//above-md ]">
     <h1 class="clr-secondary-2 text-lowercase f-size-7 fw-bold line-height-1">devfinder</h1>
-        <nav aria-label="navigation primary" class="[ navigation ] [ justify-items-end//below-sm ]">
-        <ul class="[ flow ] [ size-5  direction-row ]" role="list">
+    <nav aria-label="navigation primary" class="navigation">
+        <ul class="[ flow ] [ size-1 direction-row ]" role="list">
             <li>
                 <button class="btn" data-type="secondary">
                     <span>history</span>
@@ -61,24 +63,120 @@
     </nav>
 </header>
 
-<main>
-    <section class="wrapper stack">
-        <form id="search" class="[ search ] [ flow ] [ bg-primary-1 d-flex-inline size-fluid-3 align-items-center ]">
-            <label for="search-input">
-                <svg class="[ icon ] [ clr-accent-1 ]" focusable="false" width="1em" height="1em" aria-hidden="true">
-                    <use href="/assets/icons/icons.svg#search"/>
-                </svg>
-                <span class="sr-only">search icon</span>
-            </label>
-            <input type="text" name="search" id="search-input" placeholder="Search github username"/>
-            <p class="clr-error fw-bold hide" data-type="error" data-visible="false"></p>
-            <button type="submit" class="btn" data-type="primary">Search</button>
-        </form>
+<main class="[ wrapper flow ] [ size-fluid-4 ]">
+    <form id="search" class="[ search ] [ flow ] [ bg-primary-1 radius-2 d-flex-inline size-fluid-3 align-items-center ]">
+        <label for="search-input">
+            <svg class="[ icon ] [ clr-accent-1 ]" focusable="false" width="1em" height="1em" aria-hidden="true">
+                <use href="/assets/icons/icons.svg#search"/>
+            </svg>
+            <span class="sr-only">search icon</span>
+        </label>
+        <input type="text" name="search" id="search-input" placeholder="Search github username"/>
+        <p class="clr-error fw-bold hide" data-type="error" data-visible="false"></p>
+        <button type="submit" class="btn" data-type="primary">Search</button>
+    </form>
 
-        <div id="user" class="[ user ] [ bg-primary-1 d-grid ]" aria-label="user">
+    <div class="flow">
+        <div class="justify-content-end direction-row">
+
+
+
+<!--            <button class="btn" data-type="secondary">-->
+<!--                <span>close</span>-->
+<!--                <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                    <use href="/assets/icons/icons.svg#close"/>-->
+<!--                </svg>-->
+<!--            </button>-->
+<!--            <button class="btn" data-type="secondary">-->
+<!--                <span>delete</span>-->
+<!--                <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                    <use href="/assets/icons/icons.svg#delete"/>-->
+<!--                </svg>-->
+<!--            </button>-->
         </div>
-    </section>
+<!--        <ul id="list" class="preview" role="list">-->
+<!--            <li>-->
+<!--                <div class="[ user ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]" aria-label="user">-->
+<!--                    <div class="[ user__header ] [ flow ] [ align-items-center d-flex//below-md ]">-->
+<!--                        <img class="[ user__avatar ] [ radius-circle ]" src="https://avatars.githubusercontent.com/u/64164128?v=4" alt="" aria-hidden="true">-->
+<!--                        <div class="user__info [ flow ] [ size-1 ]">-->
+<!--                            <h2 class="clr-secondary-2 f-size-fluid-6 fw-bold line-height-1">Martin Kamír</h2>-->
+<!--                            <a class="user__username" href="https://api.github.com/users/Martin-K-Kamir" target="_blank">Martin-K-Kamir</a>-->
+<!--                            <p>Joined 22.04.2020</p>-->
+<!--                        </div>-->
+<!--                        <button class="btn" data-type="secondary">-->
+<!--                            <span class="hide//below-sm" aria-hidden="true">push</span>-->
+<!--                            <span class="sr-only">add to bookmarks</span>-->
+<!--                            <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                                <use href="/assets/icons/icons.svg#bookmarks"></use>-->
+<!--                            </svg>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="[ user__body ] [ flow ] [ size-fluid-5 ]">-->
+<!--                        <p>This profile has no bio.</p>-->
+
+<!--                        <ul class="[ user__stats ] [ bg-primary-2 radius-1 direction-row ]" role="list">-->
+<!--                            <li class="justify-items-center">-->
+<!--                                <h3 class="f-size-fluid-1 fw-normal">Repos</h3>-->
+<!--                                <p class="clr-secondary-2 f-size-fluid-5 fw-bold">29</p>-->
+<!--                            </li>-->
+<!--                            <li class="justify-items-center">-->
+<!--                                <h3 class="f-size-fluid-1 fw-normal">Followers</h3>-->
+<!--                                <p class="clr-secondary-2 f-size-fluid-5 fw-bold">0</p>-->
+<!--                            </li>-->
+<!--                            <li class="justify-items-center">-->
+<!--                                <h3 class="f-size-fluid-1 fw-normal">Following</h3>-->
+<!--                                <p class="clr-secondary-2 f-size-fluid-5 fw-bold">5</p>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+
+<!--                        <ul class="[ user__links ] [ grid flow ] [ size-content-1 clr-secondary-1 ]" data-initial-size="" role="list">-->
+<!--                            <li>-->
+<!--                                <p class="link" data-disabled="false">-->
+<!--                                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                                        <use href="/assets/icons/icons.svg#location"></use>-->
+<!--                                    </svg>-->
+<!--                                    <span>Czech Republic</span>-->
+<!--                                </p>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a class="link" href="martinkamir.com" target="_blank">-->
+<!--                                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                                        <use href="/assets/icons/icons.svg#website"></use>-->
+<!--                                    </svg>-->
+<!--                                    <span>martinkamir.com</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a class="link" href="https://twitter.com/MartinKamir" target="_blank">-->
+<!--                                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                                        <use href="/assets/icons/icons.svg#twitter"></use>-->
+<!--                                    </svg>-->
+<!--                                    <span>MartinKamir</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <p class="link" data-disabled="false">-->
+<!--                                    <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">-->
+<!--                                        <use href="/assets/icons/icons.svg#company"></use>-->
+<!--                                    </svg>-->
+<!--                                    <span>Rondo.cz</span>-->
+<!--                                </p>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+    </div>
+
+    <div id="view" class="[ user ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
+        <span class="[ loader ] [ fw-bold f-size-5 justify-self-center ]">Loading</span>
+    </div>
 </main>
+
+<div id="message" class="message" data-visible="false" data-type="default">
+</div>
 
 </body>
 </html>
