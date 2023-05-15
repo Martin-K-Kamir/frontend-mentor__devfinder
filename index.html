@@ -29,11 +29,11 @@
 
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
-<body class="[ stack ] [ size-8 ]" data-inherit-size data-stack-first>
+<body id="body" class="[ stack ] [ size-8 ]" data-inherit-size data-stack-first>
 
 <header class="[ header-site ] [ wrapper flow ] [ size-5 align-items-center justify-items-center//below-md justify-content-center//below-md direction-row//above-md justify-content-between//above-md ]">
     <h1 class="clr-secondary-2 text-lowercase f-size-7 fw-bold line-height-1">devfinder</h1>
-    <nav aria-label="navigation primary" class="navigation">
+    <nav id="navigation" aria-label="navigation primary" class="navigation">
         <ul class="[ flow ] [ size-1 direction-row ]" role="list">
             <li>
                 <button class="btn" data-type="secondary">
@@ -52,10 +52,10 @@
                 </button>
             </li>
             <li>
-                <button class="btn" data-type="secondary" aria-label="dark theme toggle" aria-checked="false">
+                <button class="btn" data-type="secondary" data-handle="theme" aria-label="dark theme toggle">
                     <span>light</span>
                     <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
-                        <use href="/assets/icons/icons.svg#light"/>
+                        <use href="/assets/icons/icons.svg#light-theme"/>
                     </svg>
                 </button>
             </li>

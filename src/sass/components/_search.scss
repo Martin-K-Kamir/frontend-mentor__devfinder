@@ -3,8 +3,10 @@
 	padding     : var(--size-fluid-1, 1em);
 	inline-size : 100%;
 
-	@media (--OSlight) {
-		box-shadow : 0 16px 30px -10px var(--clr-shadow);
+	[data-theme='light'] & {
+		@media (--OSlight) {
+			box-shadow : 0 16px 30px -10px var(--clr-shadow);
+		}
 	}
 
 	input {

@@ -4,20 +4,13 @@
 	inline-size : 100%;
 
 	@media (--touch) {
-		--_bg                 : var(--bg, var(--clr-primary-2, #FFFFFF));
+		--_bg                 : var(--bg, var(--clr-primary-2));
 		--_size-shadow        : 1.125em;
+		--_clr-shadow         : color-mix(in srgb, var(--clr-primary-1) 50%, hsla(0, 0%, 53%, 0.5));
 		--_t                  : rgba(0, 0, 0, 0);
 
 		scrollbar-width       : none;
 		overflow-scrolling    : touch;
-
-		@media (--OSlight) {
-			--_clr-shadow : hsla(0, 0%, 29%, 0.25);
-		}
-
-		@media (--OSdark) {
-			--_clr-shadow : hsla(0, 0%, 69%, 0.25);
-		}
 
 		background            : linear-gradient(to right, var(--_bg), var(--_bg), var(--_t) calc(var(--_size-shadow) * 2)),
 		radial-gradient(farthest-side at 0 50%, var(--_clr-shadow), var(--_t)),

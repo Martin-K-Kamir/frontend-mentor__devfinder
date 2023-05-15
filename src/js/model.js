@@ -16,6 +16,7 @@ export const state = new State({
     user: {},
     bookmarks: [],
     history: [],
+    theme: '',
 });
 
 function formatDate(date) {
@@ -97,3 +98,19 @@ export function store(location, data) {
     localStorage.setItem(location, JSON.stringify(data));
     return data;
 }
+
+export function restore(location) {
+    return JSON.parse(localStorage.getItem(location));
+}
+
+function init() {
+    const bookmarks = restore('bookmarks');
+    const history = restore('history');
+    const query = restore('query');
+
+    if (bookmarks) state.set({bookmarks});
+    if (history) state.set({history});
+    if (query) state.set({query});
+    console.log('init', state)
+}
+init();

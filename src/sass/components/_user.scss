@@ -4,8 +4,10 @@
 	padding-block  : var(--size-fluid-9, 2rem);
 	padding-inline : var(--size-fluid-8, 2rem);
 
-	@media (--OSlight) {
-		box-shadow : 0 16px 30px -10px var(--clr-shadow);
+	[data-theme='light'] & {
+		@media (--OSlight) {
+			box-shadow : 0 16px 30px -10px var(--clr-shadow);
+		}
 	}
 
 	&:has(:not(:only-child)) {

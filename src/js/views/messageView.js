@@ -14,6 +14,8 @@ class MessageView extends View {
 
             if (btn.dataset.handle === 'close') {
                 this.hide();
+
+                if (this.timerId) clearTimeout(this.timerId);
             }
         })
     }
