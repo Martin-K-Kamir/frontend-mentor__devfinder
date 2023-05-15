@@ -4,28 +4,16 @@ class NavigationView extends View {
     _parentElement = document.getElementById('navigation');
     _bodyElement = document.getElementById('body');
 
-    constructor() {
-        super();
+    handleHistoryClick(handler) {
+        this.onClick(handler, 'history');
+    }
 
-        this._parentElement.addEventListener('click', (e) => {
-            const btn = e.target.closest('.btn');
-            if (!btn) return;
-
-            if (btn.dataset.handle === 'close') {
-                this.hide();
-            }
-        })
+    handleBookmarksClick(handler) {
+        this.onClick(handler, 'bookmarks');
     }
 
     handleThemeToggle(handler) {
-        this._parentElement.addEventListener('click', (e) => {
-            const btn = e.target.closest('.btn');
-            if (!btn) return;
-
-            if (btn.dataset.handle === 'theme') {
-                handler();
-            }
-        })
+        this.onClick(handler, 'theme');
     }
 
     handleThemeChange(handler) {
@@ -38,11 +26,10 @@ class NavigationView extends View {
     }
 
     _generateMarkup() {
-        console.log('NavigationView', this._data)
         return `
             <ul class="[ flow ] [ size-1 direction-row ]" role="list">
                 <li>
-                    <button class="btn" data-type="secondary">
+                    <button class="btn" data-type="secondary" data-handle="history">
                         <span>history</span>
                         <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
                             <use href="/assets/icons/icons.svg#history"/>
@@ -50,7 +37,7 @@ class NavigationView extends View {
                     </button>
                 </li>
                 <li>
-                    <button class="btn" data-type="secondary">
+                    <button class="btn" data-type="secondary" data-handle="bookmarks">
                         <span>bookmarks</span>
                         <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
                             <use href="/assets/icons/icons.svg#bookmarks"/>

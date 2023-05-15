@@ -41,7 +41,7 @@ export function getUserObject(data) {
         repos: data.public_repos,
         followers: data.followers,
         following: data.following,
-        bookmarked: false,
+        bookmarked: state.bookmarks.find(user => user.id === data.id) ? true : false,
         links: [
             {
                 icon: 'location',
@@ -111,6 +111,5 @@ function init() {
     if (bookmarks) state.set({bookmarks});
     if (history) state.set({history});
     if (query) state.set({query});
-    console.log('init', state)
 }
 init();

@@ -1,9 +1,9 @@
 import * as model from './model.js';
 import userView from './views/userView.js';
+import userBookmarksView from './views/userBookmarksView.js';
 import searchView from './views/searchView.js';
 import messageView from './views/messageView.js';
 import navigationView from './views/navigationView.js';
-import {getBookmarks} from './model.js';
 
 async function controlLoadingUser() {
     try {
@@ -17,13 +17,13 @@ async function controlLoadingUser() {
 
         model.state.set({query: locationId ?? model.state.query});
 
+        userView.setId(model.state.user.id);
+
         userView.render(model.state.user);
 
         window.history.pushState(null, '', `#${model.state.user.userName}`);
 
         controlUserHistory();
-
-        console.log('controlLoadingUser', model.state);
     } catch (err) {
         if (err.message === 'timeout') {
             messageView.render({
@@ -51,7 +51,6 @@ async function controlLoadingUser() {
 }
 
 async function controlSearchingUser() {
-
     try {
         const query = searchView.getQuery();
         if (!query) return;
@@ -74,13 +73,13 @@ async function controlSearchingUser() {
 
         model.state.set({user: userObj});
 
+        userView.setId(model.state.user.id);
+
         userView.render(model.state.user);
 
         window.history.pushState(null, '', `#${model.state.user.userName}`);
 
         controlUserHistory();
-
-        console.log('controlSearchingUser', model.state)
     } catch (err) {
         if (!navigator.onLine) {
             messageView.render({
@@ -114,6 +113,26 @@ async function controlSearchingUser() {
     }
 }
 
+function controlShowBookmarks() {
+    try {
+        if (model.state.bookmarks.length === 0) throw new Error('No bookmarks found');
+
+        userBookmarksView.render(model.state.bookmarks);
+
+        console.log('controlShowBookmarks', model.state.bookmarks)
+    } catch (err) {
+        messageView.render({
+            message: err.message,
+            type: 'warning'
+        })
+    }
+}
+
+function controlShowHistory() {
+
+    console.log('controlShowHistory', model.state.history)
+}
+
 function controlUserHistory() {
     model.state.set({history: model.getHistory(model.state.user)});
     model.store('history', model.state.history);
@@ -129,27 +148,34 @@ function controlUserBookmarks(id) {
     }
 
     model.store('bookmarks', model.state.bookmarks);
-
-    console.log('controlUserBookmarks', model.state)
 }
 
 function controlPreferredTheme() {
     const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const lightTheme = window.matchMedia("(prefers-color-scheme: light)");
     const theme = model.restore('theme');
-    console.log('controlPreferredTheme', theme)
 
-    if (theme === 'dark' || darkTheme.matches) {
+    if (!theme && darkTheme.matches) {
         navigationView.setTheme('dark');
         model.state.set({theme: 'dark'});
     }
 
-    if (theme === 'light' || !darkTheme.matches) {
+    if (!theme && lightTheme.matches) {
+        navigationView.setTheme('light');
+        model.state.set({theme: 'light'});
+    }
+
+    if (theme && theme === 'dark') {
+        navigationView.setTheme('dark');
+        model.state.set({theme: 'dark'});
+    }
+
+    if (theme && theme === 'light') {
         navigationView.setTheme('light');
         model.state.set({theme: 'light'});
     }
 
     navigationView.update(model.state.theme);
-    console.log('controlPreferredTheme', model.state)
 }
 
 function controlToggleTheme() {
@@ -162,15 +188,17 @@ function controlToggleTheme() {
     }
 
     navigationView.update(model.state.theme);
-    console.log('controlToggleTheme', model.state)
+    model.store('theme', model.state.theme);
 }
 
 
 const init = function () {
     userView.handleLoad(controlLoadingUser)
-    userView.handleBookmark(controlUserBookmarks)
+    userView.handleBookmarkToggle(controlUserBookmarks)
     searchView.handleSearch(controlSearchingUser)
     navigationView.handleThemeChange(controlPreferredTheme)
     navigationView.handleThemeToggle(controlToggleTheme)
+    navigationView.handleBookmarksClick(controlShowBookmarks)
+    navigationView.handleHistoryClick(controlShowHistory)
 };
 init();

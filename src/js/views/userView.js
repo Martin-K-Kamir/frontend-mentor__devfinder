@@ -1,16 +1,20 @@
 import View from './View.js';
 class UserView extends View {
-    _parentElement = document.getElementById('view')
+    _parentElement = document.getElementById('user-view')
     handleLoad(handler) {
         ['load', 'hashchange'].forEach(event => window.addEventListener(event, handler))
     }
 
-    handleBookmark(handler) {
+    handleBookmarkToggle(handler) {
         this._parentElement.addEventListener('click',  e => {
             const btn = e.target.closest('.btn');
             if (!btn || btn.dataset.handle !== 'bookmark') return;
             handler(+this._parentElement.dataset.id);
         });
+    }
+
+    setId(id) {
+        this._parentElement.dataset.id = id;
     }
 
     _generateMarkupLink(item) {
@@ -39,7 +43,6 @@ class UserView extends View {
         `
     }
     _generateMarkup() {
-        this._parentElement.dataset.id = this._data.id;
 
         return `
             <div class="[ user__header ] [ flow ] [ align-items-center d-flex//below-md ]">
@@ -93,3 +96,4 @@ class UserView extends View {
 }
 
 export default new UserView();
+

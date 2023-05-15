@@ -27,7 +27,7 @@
 	--clr-accent-1    : hsl(212, 100%, 50%);
 	--clr-error       : hsl(0, 92%, 62%);
 	--clr-success     : hsl(122, 39%, 49%);
-	--clr-warning     : hsl(45, 100%, 50%);
+	--clr-warning     : hsl(31, 100%, 48%);
 	--clr-shadow      : hsla(227, 46%, 50%, 0.2);
 	--clr-invert      : hsl(0, 0%, 0%);
 
@@ -104,6 +104,15 @@
 	--radius-3        : 1.25rem;
 	--radius-circle   : 50%;
 	--radius-pill     : 100vmax;
+}
+
+[data-theme='light'] {
+	--clr-primary-1   : hsl(0, 0%, 100%);
+	--clr-primary-2   : hsl(227, 100%, 98%);
+	--clr-secondary-1 : hsl(217, 35%, 45%);
+	--clr-secondary-2 : hsl(217, 21%, 21%);
+	--clr-shadow      : hsla(227, 46%, 50%, 0.2);
+	--clr-invert      : hsl(0, 0%, 0%);
 }
 
 [data-theme='dark'] {

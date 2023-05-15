@@ -1,14 +1,25 @@
-import userView from './userView.js';
 
 export default class View {
     _data;
-    render(data, render = true) {
+
+    onClick(handler, handleEvent) {
+        this._parentElement.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn');
+            if (!btn) return;
+
+            if (btn.dataset.handle === handleEvent) {
+                handler();
+            }
+        })
+    }
+
+    render(data, getMarkup = false) {
         if (!data || (Array.isArray(data) && data.length === 0)) return;
 
         this._data = data;
         const markup = this._generateMarkup();
 
-        if (!render) return markup;
+        if (getMarkup) return markup;
 
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
