@@ -115,17 +115,39 @@ async function controlSearchingUser() {
 
 function controlShowBookmarks() {
     try {
-        if (model.state.bookmarks.length === 0) throw new Error('No bookmarks found');
+        if (model.state.bookmarks.length === 0) throw new Error('No bookmarks found')
+        let timerId;
 
         userBookmarksView.render(model.state.bookmarks);
 
-        console.log('controlShowBookmarks', model.state.bookmarks)
+        userBookmarksView.animateReveal(true)
+
+        userView.animateFade(false)
+
+        if (timerId) clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            userView.clear()
+        }, 500)
+
     } catch (err) {
         messageView.render({
             message: err.message,
             type: 'warning'
         })
     }
+}
+
+function controlHideBookmarks() {
+    userBookmarksView.animateReveal(false)
+
+    userView.animateFade(true)
+    userView.render(model.state.user)
+
+    let timerId;
+    if (timerId) clearTimeout(timerId);
+    timerId = setTimeout(() => {
+        userBookmarksView.clear()
+    }, 800)
 }
 
 function controlShowHistory() {
@@ -190,13 +212,12 @@ function controlToggleTheme() {
 
 
 const init = function () {
-    userView.handleLoad(controlLoadingUser)
-    userView.handleBookmarkToggle(controlUserBookmarks)
-    userBookmarksView.handleBookmarkClick(controlUserBookmarks)
-    searchView.handleSearch(controlSearchingUser)
-    navigationView.handleThemeChange(controlPreferredTheme)
-    navigationView.handleThemeToggle(controlToggleTheme)
-    navigationView.handleBookmarksClick(controlShowBookmarks)
-    navigationView.handleHistoryClick(controlShowHistory)
+    userView.handleLoad(controlLoadingUser);
+    userView.handleBookmarkToggle(controlUserBookmarks);
+    userBookmarksView.handleBookmarkClick(controlUserBookmarks);
+    searchView.handleSearch(controlSearchingUser);
+    navigationView.handleThemeChange(controlPreferredTheme);
+    navigationView.handleThemeToggle(controlToggleTheme);
+    navigationView.handleBookmarksToggle(controlShowBookmarks, controlHideBookmarks);
 };
 init();

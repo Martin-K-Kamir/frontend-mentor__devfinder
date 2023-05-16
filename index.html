@@ -29,7 +29,7 @@
 
     <script defer src="src/js/controller.js" type="module"></script>
 </head>
-<body id="body" class="[ stack ] [ size-8 ]" data-inherit-size data-stack-first>
+<body id="body" class="[ stack ] [ size-8 ]" data-inherit-size>
 
 <header class="[ header-site ] [ wrapper flow ] [ size-5 align-items-center justify-items-center//below-md justify-content-center//below-md direction-row//above-md justify-content-between//above-md ]">
     <h1 class="clr-secondary-2 text-lowercase f-size-7 fw-bold line-height-1">devfinder</h1>
@@ -63,7 +63,7 @@
     </nav>
 </header>
 
-<main class="[ wrapper stack ] [ size-fluid-9 ]">
+<main class="[ wrapper stack ] [ size-fluid-5 ]">
     <form id="search" class="[ search ] [ flow ] [ bg-primary-1 radius-2 d-flex-inline size-fluid-3 align-items-center ]">
         <label for="search-input">
             <svg class="[ icon ] [ clr-accent-1 ]" focusable="false" width="1em" height="1em" aria-hidden="true">
@@ -76,15 +76,15 @@
         <button type="submit" class="btn" data-type="primary">Search</button>
     </form>
 
-    <div class="[ stack ] [ size-fluid-5 ]">
+    <div>
         <div id="user-history" class="" aria-hidden="true"></div>
 
-        <div id="user-bookmarks" class="animate" data-animate-reveal="false" aria-hidden="true">
-            <div class="[ stack ] [ size-fluid-5 ]"></div>
-        </div>
+        <div id="user-bookmarks" aria-hidden="true"><div></div></div>
 
-        <div id="user-view" class="[ user ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
-            <span class="[ loader ] [ fw-bold f-size-5 justify-self-center ]">Loading</span>
+        <div id="user-view" class="user">
+            <div class="[ user__wrapper ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
+                <span class="[ loader ] [ fw-bold f-size-5 justify-self-center ]">Loading</span>
+            </div>
         </div>
     </div>
 </main>

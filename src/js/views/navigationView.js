@@ -3,17 +3,35 @@ import View from './View.js';
 class NavigationView extends View {
     _parentElement = document.getElementById('navigation');
     _bodyElement = document.getElementById('body');
+    _btnHistoryActive = false;
+    _btnBookmarksActive = false;
 
-    handleHistoryClick(handler) {
-        this.onClick(handler, 'history');
-    }
+    handleBookmarksToggle(handler1, handler2) {
+        this._parentElement.addEventListener('click', (e) => {
+            const btn= e.target.closest('.btn');
+            if (!btn || btn.dataset.handle !== 'bookmarks') return;
 
-    handleBookmarksClick(handler) {
-        this.onClick(handler, 'bookmarks');
+            if (!this._btnBookmarksActive) {
+                handler1();
+                this._btnBookmarksActive = true;
+                btn.dataset.state = 'active';
+            } else {
+                handler2();
+                this._btnBookmarksActive = false;
+                delete btn.dataset.state;
+            }
+        });
     }
 
     handleThemeToggle(handler) {
-        this.onClick(handler, 'theme');
+        this._parentElement.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn');
+            if (!btn) return;
+
+            if (btn.dataset.handle === 'theme') {
+                handler();
+            }
+        });
     }
 
     handleThemeChange(handler) {

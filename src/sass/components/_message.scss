@@ -1,6 +1,6 @@
 
 .message {
-	--clr-btn              : #FFFFFF;
+	--btn-clr              : #FFFFFF;
 	--_transition-duration : 300ms;
 	--_transition-timing   : ease-in-out;
 
@@ -12,7 +12,7 @@
 	translate              : -50% 0;
 	padding-block          : var(--size-fluid-2, 1em);
 	border-radius          : 0 0 var(--radius-2) var(--radius-2);
-	color                  : var(--clr-btn);
+	color                  : var(--btn-clr);
 
 	&__wrapper {
 		@media (--above-md) {

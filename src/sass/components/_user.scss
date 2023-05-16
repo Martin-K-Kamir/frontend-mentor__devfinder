@@ -1,20 +1,23 @@
 
 .user {
-	position       : relative;
-	padding-block  : var(--size-fluid-9, 2rem);
-	padding-inline : var(--size-fluid-8, 2rem);
 
-	[data-theme='light'] & {
-		box-shadow : 0 1rem 1.875rem -0.625rem var(--clr-shadow);
-	}
+	&__wrapper {
+		position       : relative;
+		padding-block  : var(--size-fluid-9, 2rem);
+		padding-inline : var(--size-fluid-8, 2rem);
 
-	&:has(:not(:only-child)) {
-		@media (--above-md) {
-			grid-template-areas   :
+		[data-theme='light'] & {
+			box-shadow : 0 1rem 1.875rem -0.625rem var(--clr-shadow);
+		}
+
+		&:has(:not(:only-child)) {
+			@media (--above-md) {
+				grid-template-areas   :
 			'avatar info'
 			'avatar body';
-			grid-template-columns : auto 1fr;
-			grid-template-rows    : auto 1fr;
+				grid-template-columns : auto 1fr;
+				grid-template-rows    : auto 1fr;
+			}
 		}
 	}
 

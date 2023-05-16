@@ -1,17 +1,27 @@
 
 .animate {
-	--_animation-duration : var(--_animation-duration, 500ms);
-	--_animation-delay    : var(--_animation-duration, 0);
-	--_animation-timing   : var(--_animation-timing, ease-in-out);
+	--_animate-duration : var(--animate-duration, 600ms);
+	--_animate-timing   : var(--animate-timing, ease-in-out);
 
-	&[data-animate-reveal] {
-		transition : opacity 800ms, max-height 800ms;
-		max-height : var(--max-height, 0);
-		opacity: 1;
-		overflow: hidden;
+	--_height-duration : var(--height-duration, var(--_animate-duration));
+	--_height-timing   : var(--height-timing, var(--_animate-timing));
+
+	--_opacity-duration : var(--opacity-duration, var(--_animate-duration));
+	--_opacity-timing   : var(--opacity-timing, var(--_animate-timing));
+
+
+	&[data-animate-height] {
+		max-block-size : var(--animate-height, 0);
+		overflow       : hidden;
 	}
 
-	&[data-animate-reveal='false'] {
-		opacity    : 0;
+	&[data-animate-opacity] {
+		opacity : var(--animate-opacity, 0);
+	}
+
+	&[data-animating] {
+		transition-property: opacity, max-block-size;
+		transition-duration: var(--_opacity-duration), var(--_height-duration);
+		transition-timing-function: var(--_opacity-timing), var(--_height-timing);
 	}
 }
