@@ -1,0 +1,17 @@
+
+.animate {
+	--_animation-duration : var(--_animation-duration, 500ms);
+	--_animation-delay    : var(--_animation-duration, 0);
+	--_animation-timing   : var(--_animation-timing, ease-in-out);
+
+	&[data-animate-reveal] {
+		transition : opacity 800ms, max-height 800ms;
+		max-height : var(--max-height, 0);
+		opacity: 1;
+		overflow: hidden;
+	}
+
+	&[data-animate-reveal='false'] {
+		opacity    : 0;
+	}
+}

@@ -63,7 +63,7 @@
     </nav>
 </header>
 
-<main class="[ wrapper flow ] [ size-fluid-4 ]">
+<main class="[ wrapper stack ] [ size-fluid-9 ]">
     <form id="search" class="[ search ] [ flow ] [ bg-primary-1 radius-2 d-flex-inline size-fluid-3 align-items-center ]">
         <label for="search-input">
             <svg class="[ icon ] [ clr-accent-1 ]" focusable="false" width="1em" height="1em" aria-hidden="true">
@@ -76,12 +76,16 @@
         <button type="submit" class="btn" data-type="primary">Search</button>
     </form>
 
-    <div id="user-history" class="[ flow ] [ hide ]" aria-hidden="true"></div>
+    <div class="[ stack ] [ size-fluid-5 ]">
+        <div id="user-history" class="" aria-hidden="true"></div>
 
-    <div id="user-bookmarks" class="[ flow ] [ ]" aria-hidden="true"></div>
+        <div id="user-bookmarks" class="animate" data-animate-reveal="false" aria-hidden="true">
+            <div class="[ stack ] [ size-fluid-5 ]"></div>
+        </div>
 
-    <div id="user-view" class="[ user ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
-        <span class="[ loader ] [ fw-bold f-size-5 justify-self-center ]">Loading</span>
+        <div id="user-view" class="[ user ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
+            <span class="[ loader ] [ fw-bold f-size-5 justify-self-center ]">Loading</span>
+        </div>
     </div>
 </main>
 

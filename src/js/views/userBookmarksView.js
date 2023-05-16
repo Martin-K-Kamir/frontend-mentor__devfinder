@@ -3,16 +3,22 @@ import View from './View.js';
 
 class UserBookmarksView extends View {
     _parentElement = document.getElementById('user-bookmarks');
+    _renderElement = document.querySelector('#user-bookmarks > div');
 
-    handleBookmarkToggle(handler) {
+    handleBookmarkClick(handler) {
         this._parentElement.addEventListener('click',  e => {
             const btn = e.target.closest('.btn');
+            const user = e.target.closest('.user');
             if (!btn || btn.dataset.handle !== 'bookmark') return;
-            handler(+this._parentElement.dataset.id);
+            handler(+user.dataset.id);
+
+            user.remove();
         });
     }
 
     _generateMarkup() {
+        this._parentElement.setAttribute('aria-hidden', false);
+        this._parentElement.dataset.animateReveal = true;
 
         return `
             <div class="[ flow ] [ size-1 justify-content-end direction-row ]">

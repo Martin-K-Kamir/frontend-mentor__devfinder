@@ -129,7 +129,6 @@ function controlShowBookmarks() {
 }
 
 function controlShowHistory() {
-
     console.log('controlShowHistory', model.state.history)
 }
 
@@ -141,11 +140,9 @@ function controlUserHistory() {
 
 function controlUserBookmarks(id) {
     model.state.set({bookmarks: model.getBookmarks(id)});
+    model.state.set({user: {...model.state.user, bookmarked: !model.state.user.bookmarked}});
 
-    if (model.state.user.id === id) {
-        model.state.set({user: {...model.state.user, bookmarked: !model.state.user.bookmarked}});
-        userView.update(model.state.user)
-    }
+    userView.update(model.state.user);
 
     model.store('bookmarks', model.state.bookmarks);
 }
@@ -195,6 +192,7 @@ function controlToggleTheme() {
 const init = function () {
     userView.handleLoad(controlLoadingUser)
     userView.handleBookmarkToggle(controlUserBookmarks)
+    userBookmarksView.handleBookmarkClick(controlUserBookmarks)
     searchView.handleSearch(controlSearchingUser)
     navigationView.handleThemeChange(controlPreferredTheme)
     navigationView.handleThemeToggle(controlToggleTheme)

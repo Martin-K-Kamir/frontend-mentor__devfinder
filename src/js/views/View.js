@@ -1,4 +1,3 @@
-
 export default class View {
     _data;
 
@@ -22,7 +21,13 @@ export default class View {
         if (getMarkup) return markup;
 
         this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
+        (this._renderElement ?? this._parentElement).insertAdjacentHTML('afterbegin', markup);
+
+        if (this._parentElement.dataset.animateReveal) {
+            const height = this._renderElement.getBoundingClientRect().height;
+            this._parentElement.style.setProperty('--max-height', `${Math.round((height + 50) / 16)}rem`);
+        }
+
     }
 
     update(data) {
@@ -51,6 +56,6 @@ export default class View {
     }
 
     _clear() {
-        this._parentElement.innerHTML = '';
+        (this._renderElement ?? this._parentElement).innerHTML = '';
     }
 }

@@ -47,7 +47,7 @@ class UserView extends View {
         return `
             <div class="[ user__header ] [ flow ] [ align-items-center d-flex//below-md ]">
                 <img class="[ user__avatar ] [ radius-circle ]" src="${this._data.avatar}" alt="" aria-hidden="true">
-                <div class="user__info [ flow ] [ size-1 ]">
+                <div class="[ user__info ] [ flow ] [ size-1 ]">
                     <h2 class="clr-secondary-2 f-size-fluid-6 fw-bold line-height-1">${this._data.fullName}</h2>
                     <a class="user__username" href="${this._data.url}" target="_blank">${this._data.userName}</a>
                     <p>Joined ${this._data.created}</p>
