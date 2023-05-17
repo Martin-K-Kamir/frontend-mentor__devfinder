@@ -1,6 +1,6 @@
 
 .animate {
-	--_animate-duration : var(--animate-duration, 600ms);
+	--_animate-duration : var(--animate-duration, 500ms);
 	--_animate-timing   : var(--animate-timing, ease-in-out);
 
 	--_height-duration : var(--height-duration, var(--_animate-duration));

@@ -21,7 +21,7 @@ async function controlLoadingUser() {
 
         userView.render(model.state.user);
 
-        window.history.pushState(null, '', `#${model.state.user.userName}`);
+        window.history.pushState(null, '', `#${model.state.user.username}`);
 
         controlUserHistory();
     } catch (err) {
@@ -34,14 +34,14 @@ async function controlLoadingUser() {
 
         if (err.status === 404) {
             messageView.render({
-                message: 'User not found',
+                message: 'User not found.',
                 type: 'error',
             })
         }
 
         if (err.status === 403) {
             messageView.render({
-                message: 'API rate limit exceeded',
+                message: 'API rate limit exceeded.',
                 type: 'error',
             })
         }
@@ -77,7 +77,7 @@ async function controlSearchingUser() {
 
         userView.render(model.state.user);
 
-        window.history.pushState(null, '', `#${model.state.user.userName}`);
+        window.history.pushState(null, '', `#${model.state.user.username}`);
 
         controlUserHistory();
     } catch (err) {
@@ -90,14 +90,14 @@ async function controlSearchingUser() {
 
         if (err.status === 404) {
             messageView.render({
-                message: 'User not found',
+                message: 'User not found.',
                 type: 'error',
             })
         }
 
         if (err.status === 403) {
             messageView.render({
-                message: 'API rate limit exceeded',
+                message: 'API rate limit exceeded.',
                 type: 'error',
             })
         }
@@ -114,7 +114,6 @@ async function controlSearchingUser() {
 }
 
 function controlShowBookmarks() {
-
     if (model.state.bookmarks.length === 0) {
         messageView.render({
             message: 'You have no bookmarks yet. <br> You can bookmark users by clicking on the bookmark icon in the top right corner.',
@@ -123,45 +122,56 @@ function controlShowBookmarks() {
         return;
     }
 
-    navigationView.bookmarksActive = true;
+    window.history.pushState(null, '', ' ');
+
+    navigationView.setActiveBtn('bookmarks', true);
 
     userBookmarksView.render(model.state.bookmarks);
 
-    userBookmarksView.animateReveal(true)
+    userBookmarksView.animateReveal(true);
 
-    userView.animateFade(false)
+    if (userView.timerId) clearTimeout(userView.timerId);
 
-    if (!userView.timerId) {
-        userView.timerId = setTimeout(() => {
-            userView.clear()
-            clearTimeout(userView.timerId);
-        }, 800)
-    }
+    userView.timerId = setTimeout(() => {
+        userView.animateFade(false);
+
+        setTimeout(() => {
+            userView.clear();
+        }, 500)
+    }, 30);
 }
 
 function controlHideBookmarks() {
+    if (!navigationView.bookmarksActive) return;
 
-    if(!navigationView.bookmarksActive) return;
-
-    navigationView.bookmarksActive = false;
+    navigationView.setActiveBtn('bookmarks', false);
 
     userBookmarksView.animateReveal(false);
     userView.animateFade(true);
 
     userView.render(model.state.user);
 
-    if (!userBookmarksView.timerId) {
-        userBookmarksView.timerId = setTimeout(() => {
-            userBookmarksView.clear()
-            clearTimeout(userBookmarksView.timerId);
-        }, 800)
-    }
+    window.history.pushState(null, '', `#${model.state.user.username}`);
 
+    if (userBookmarksView.timerId) clearTimeout(userBookmarksView.timerId);
 
+    userBookmarksView.timerId = setTimeout(() => {
+        userBookmarksView.clear()
+    }, 500)
 }
 
 function controlShowHistory() {
-    console.log('controlShowHistory', model.state.history)
+    if (model.state.history.length === 0) {
+        messageView.render({
+            message: 'You have no history yet. <br> You can search for users by typing their username in the search bar.',
+            type: 'warning'
+        })
+        return;
+    }
+
+    window.history.pushState(null, '', ' ');
+
+    navigationView.setActiveBtn('history', true);
 }
 
 function controlUserHistory() {
@@ -177,6 +187,15 @@ function controlUserBookmarks(id) {
     userView.update(model.state.user);
 
     model.store('bookmarks', model.state.bookmarks);
+}
+
+function controlDeleteBookmarks() {
+    model.state.set({bookmarks: [], user: {...model.state.user, bookmarked: false}});
+    model.store('bookmarks', model.state.bookmarks);
+    messageView.render({
+        message: 'Bookmarks deleted.',
+        type: 'success'
+    });
 }
 
 function controlPreferredTheme() {
@@ -220,15 +239,18 @@ function controlToggleTheme() {
     model.store('theme', model.state.theme);
 }
 
-
 const init = function () {
     userView.handleLoad(controlLoadingUser);
-    userView.handleBookmarkToggle(controlUserBookmarks);
+    userView.handleBookmarkClick(controlUserBookmarks);
     userBookmarksView.handleBookmarkClick(controlUserBookmarks);
+    userBookmarksView.handleBookmarkLastClick(controlHideBookmarks);
+    userBookmarksView.handleCloseClick(controlHideBookmarks);
+    userBookmarksView.handleDeleteClick(controlDeleteBookmarks);
+    userBookmarksView.handleDeleteClick(controlHideBookmarks);
     searchView.handleSearch(controlSearchingUser);
     searchView.handleSearch(controlHideBookmarks);
     navigationView.handleThemeChange(controlPreferredTheme);
-    navigationView.handleThemeToggle(controlToggleTheme);
+    navigationView.handleThemeClick(controlToggleTheme);
     navigationView.handleBookmarksToggle(controlShowBookmarks, controlHideBookmarks);
 };
 init();

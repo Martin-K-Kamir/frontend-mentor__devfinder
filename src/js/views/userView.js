@@ -5,7 +5,7 @@ class UserView extends View {
         ['load', 'hashchange'].forEach(event => window.addEventListener(event, handler))
     }
 
-    handleBookmarkToggle(handler) {
+    handleBookmarkClick(handler) {
         this._parentElement.addEventListener('click',  e => {
             const btn = e.target.closest('.btn');
             if (!btn || btn.dataset.handle !== 'bookmark') return;
@@ -49,8 +49,8 @@ class UserView extends View {
                 <div class="[ user__header ] [ flow ] [ align-items-center d-flex//below-md ]">
                     <img class="[ user__avatar ] [ radius-circle ]" src="${this._data.avatar}" alt="" aria-hidden="true">
                     <div class="[ user__info ] [ flow ] [ size-1 ]">
-                        <h2 class="clr-secondary-2 f-size-fluid-6 fw-bold line-height-1">${this._data.fullName}</h2>
-                        <a class="user__username" href="${this._data.url}" target="_blank">${this._data.userName}</a>
+                        <h2 class="clr-secondary-2 f-size-fluid-6 fw-bold line-height-1">${this._data.fullname}</h2>
+                        <a class="user__username" href="${this._data.url}" target="_blank">${this._data.username}</a>
                         <p>Joined ${this._data.created}</p>
                     </div>
                     <button class="btn" data-handle="bookmark" data-type="secondary">

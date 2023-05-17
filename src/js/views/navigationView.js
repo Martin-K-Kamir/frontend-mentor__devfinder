@@ -3,8 +3,12 @@ import View from './View.js';
 class NavigationView extends View {
     _parentElement = document.getElementById('navigation');
     _bodyElement = document.getElementById('body');
-    btnHistoryActive = false;
+    _bookmarkBtn = this._parentElement.querySelector('.btn[data-handle="bookmarks"]');
+    _historyBtn = this._parentElement.querySelector('.btn[data-handle="history"]');
+
+    historyActive = false;
     bookmarksActive = false;
+    themeActive = 'dark';
 
     handleBookmarksToggle(handler1, handler2) {
         this._parentElement.addEventListener('click', (e) => {
@@ -16,24 +20,11 @@ class NavigationView extends View {
             } else {
                 handler2();
             }
-
-            btn.dataset.active = this.bookmarksActive;
         });
     }
 
-    setActive(btn, bool) {
-        btn.dataset.active = bool;
-    }
-
-    handleThemeToggle(handler) {
-        this._parentElement.addEventListener('click', (e) => {
-            const btn = e.target.closest('.btn');
-            if (!btn) return;
-
-            if (btn.dataset.handle === 'theme') {
-                handler();
-            }
-        });
+    handleThemeClick(handler) {
+        this._btnClick(handler, 'theme');
     }
 
     handleThemeChange(handler) {
@@ -43,6 +34,18 @@ class NavigationView extends View {
 
     setTheme(theme) {
         this._bodyElement.dataset.theme = theme;
+    }
+
+    setActiveBtn(btn, isActive) {
+        if (btn === 'bookmarks') {
+            this.bookmarksActive = isActive;
+            this._bookmarkBtn.dataset.active = isActive;
+        }
+
+        if (btn === 'history') {
+            this.historyActive = isActive;
+            this._historyBtn.dataset.active = isActive;
+        }
     }
 
     _generateMarkup() {

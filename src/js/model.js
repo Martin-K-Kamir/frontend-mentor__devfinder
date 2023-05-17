@@ -33,8 +33,8 @@ export function getUserObject(data) {
     return {
         id: data.id,
         url: data.html_url,
-        userName: data.login,
-        fullName: data.name,
+        username: data.login,
+        fullname: data.name,
         bio: data.bio,
         avatar: data.avatar_url,
         created: formatDate(data.created_at),

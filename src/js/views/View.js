@@ -2,6 +2,15 @@ export default class View {
     _data;
     timerId
 
+    _btnClick(handler, handleEvent) {
+        this._parentElement.addEventListener('click', e => {
+            const btn = e.target.closest('.btn');
+            if (!btn || btn.dataset.handle !== handleEvent) return;
+
+            handler(btn);
+        });
+    }
+
     render(data, getMarkup = false) {
         if (!data || (Array.isArray(data) && data.length === 0)) return;
 
@@ -15,6 +24,7 @@ export default class View {
     }
 
     update(data) {
+        if (!this._parentElement.hasChildNodes()) return;
 
         this._data = data;
         const newMarkup = this._generateMarkup();
@@ -49,19 +59,15 @@ export default class View {
         this._parentElement.setAttribute('data-animate-opacity', "");
 
         if (show) {
-            setTimeout(() => {
-                this._parentElement.setAttribute('data-animating', "");
-                const height = this._renderElement.getBoundingClientRect().height;
-                this._parentElement.style.setProperty('--animate-height', `${Math.round((height + 50) / 16)}rem`);
-                this._parentElement.style.setProperty('--animate-opacity', '1');
-            }, 50);
+            this._parentElement.setAttribute('data-animating', "");
+            const height = this._renderElement.getBoundingClientRect().height;
+            this._parentElement.style.setProperty('--animate-height', `${Math.round((height + 50) / 16)}rem`);
+            this._parentElement.style.setProperty('--animate-opacity', '1');
         }
 
-        if(!show) {
-            setTimeout(() => {
-                this._parentElement.style.setProperty('--animate-height', '0');
-                this._parentElement.style.setProperty('--animate-opacity', '0');
-            }, 50);
+        if (!show) {
+            this._parentElement.style.setProperty('--animate-height', '0');
+            this._parentElement.style.setProperty('--animate-opacity', '0');
         }
     }
 
@@ -71,15 +77,11 @@ export default class View {
         this._parentElement.setAttribute('data-animating', "");
 
         if (show) {
-            setTimeout(() => {
-                this._parentElement.style.setProperty('--animate-opacity', '1');
-            }, 50);
+            this._parentElement.style.setProperty('--animate-opacity', '1');
         }
 
         if (!show) {
-            setTimeout(() => {
-                this._parentElement.style.setProperty('--animate-opacity', '0');
-            }, 50);
+            this._parentElement.style.setProperty('--animate-opacity', '0');
         }
     }
 }

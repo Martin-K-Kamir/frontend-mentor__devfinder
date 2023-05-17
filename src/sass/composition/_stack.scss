@@ -9,7 +9,7 @@
 		margin-block : 0;
 	}
 
-	& > *:not(:empty) + *:not(:empty) {
+	& > :where(*:not(:empty) + *:not(:empty)) {
 		margin-block-start : var(--_stack-size);
 	}
 
