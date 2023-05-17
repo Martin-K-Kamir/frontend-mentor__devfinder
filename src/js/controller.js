@@ -114,40 +114,50 @@ async function controlSearchingUser() {
 }
 
 function controlShowBookmarks() {
-    try {
-        if (model.state.bookmarks.length === 0) throw new Error('No bookmarks found')
-        let timerId;
 
-        userBookmarksView.render(model.state.bookmarks);
-
-        userBookmarksView.animateReveal(true)
-
-        userView.animateFade(false)
-
-        if (timerId) clearTimeout(timerId);
-        timerId = setTimeout(() => {
-            userView.clear()
-        }, 500)
-
-    } catch (err) {
+    if (model.state.bookmarks.length === 0) {
         messageView.render({
-            message: err.message,
+            message: 'You have no bookmarks yet. <br> You can bookmark users by clicking on the bookmark icon in the top right corner.',
             type: 'warning'
         })
+        return;
+    }
+
+    navigationView.bookmarksActive = true;
+
+    userBookmarksView.render(model.state.bookmarks);
+
+    userBookmarksView.animateReveal(true)
+
+    userView.animateFade(false)
+
+    if (!userView.timerId) {
+        userView.timerId = setTimeout(() => {
+            userView.clear()
+            clearTimeout(userView.timerId);
+        }, 800)
     }
 }
 
 function controlHideBookmarks() {
-    userBookmarksView.animateReveal(false)
 
-    userView.animateFade(true)
-    userView.render(model.state.user)
+    if(!navigationView.bookmarksActive) return;
 
-    let timerId;
-    if (timerId) clearTimeout(timerId);
-    timerId = setTimeout(() => {
-        userBookmarksView.clear()
-    }, 800)
+    navigationView.bookmarksActive = false;
+
+    userBookmarksView.animateReveal(false);
+    userView.animateFade(true);
+
+    userView.render(model.state.user);
+
+    if (!userBookmarksView.timerId) {
+        userBookmarksView.timerId = setTimeout(() => {
+            userBookmarksView.clear()
+            clearTimeout(userBookmarksView.timerId);
+        }, 800)
+    }
+
+
 }
 
 function controlShowHistory() {
@@ -216,6 +226,7 @@ const init = function () {
     userView.handleBookmarkToggle(controlUserBookmarks);
     userBookmarksView.handleBookmarkClick(controlUserBookmarks);
     searchView.handleSearch(controlSearchingUser);
+    searchView.handleSearch(controlHideBookmarks);
     navigationView.handleThemeChange(controlPreferredTheme);
     navigationView.handleThemeToggle(controlToggleTheme);
     navigationView.handleBookmarksToggle(controlShowBookmarks, controlHideBookmarks);

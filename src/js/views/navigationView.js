@@ -3,24 +3,26 @@ import View from './View.js';
 class NavigationView extends View {
     _parentElement = document.getElementById('navigation');
     _bodyElement = document.getElementById('body');
-    _btnHistoryActive = false;
-    _btnBookmarksActive = false;
+    btnHistoryActive = false;
+    bookmarksActive = false;
 
     handleBookmarksToggle(handler1, handler2) {
         this._parentElement.addEventListener('click', (e) => {
-            const btn= e.target.closest('.btn');
+            const btn = e.target.closest('.btn');
             if (!btn || btn.dataset.handle !== 'bookmarks') return;
 
-            if (!this._btnBookmarksActive) {
+            if (!this.bookmarksActive) {
                 handler1();
-                this._btnBookmarksActive = true;
-                btn.dataset.state = 'active';
             } else {
                 handler2();
-                this._btnBookmarksActive = false;
-                delete btn.dataset.state;
             }
+
+            btn.dataset.active = this.bookmarksActive;
         });
+    }
+
+    setActive(btn, bool) {
+        btn.dataset.active = bool;
     }
 
     handleThemeToggle(handler) {
@@ -55,7 +57,7 @@ class NavigationView extends View {
                     </button>
                 </li>
                 <li>
-                    <button class="btn" data-type="secondary" data-handle="bookmarks">
+                    <button class="btn" data-type="secondary" data-active="${this.bookmarksActive}" data-handle="bookmarks">
                         <span>bookmarks</span>
                         <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
                             <use href="/assets/icons/icons.svg#bookmarks"/>

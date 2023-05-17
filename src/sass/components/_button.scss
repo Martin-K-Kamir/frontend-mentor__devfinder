@@ -58,7 +58,7 @@
 	padding        : 0.45em 1em 0.5em;
 
 
-	&[data-state='active'] {
+	&[data-active='true'] {
 		--bg : var(--_bg-active);
 	}
 
