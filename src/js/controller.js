@@ -5,6 +5,7 @@ import userHistoryView from './views/userHistoryView.js';
 import searchView from './views/searchView.js';
 import messageView from './views/messageView.js';
 import navigationView from './views/navigationView.js';
+import pageLoaderView from './views/pageLoaderView.js';
 
 async function controlLoadingUser() {
     try {
@@ -23,7 +24,6 @@ async function controlLoadingUser() {
         model.state.set({query: locationId ?? model.state.query});
 
         userView.setId(model.state.user.id);
-
         userView.render(model.state.user);
 
         window.history.pushState(null, '', `#${model.state.user.username}`);
@@ -295,7 +295,17 @@ function controlToggleTheme() {
     model.store('theme', model.state.theme);
 }
 
+function controlPageLoad() {
+    pageLoaderView.animateFade(false);
+
+    pageLoaderView.timerId = setTimeout(() => {
+        pageLoaderView.destroy();
+    }, 500)
+}
+
 const init = function () {
+    pageLoaderView.handleLoad(controlPageLoad);
+
     userView.handleLoad(controlLoadingUser);
     userView.handleLoad(controlHideHistory);
     userView.handleBookmarkClick(controlUserBookmarks);

@@ -21,7 +21,7 @@ html:focus-within {
 }
 
 :where(html, body, #root) {
-	min-block-size : 100%;
+	min-block-size : 100vh;
 }
 
 /* Set core body defaults */

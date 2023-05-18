@@ -25,7 +25,7 @@ class UserView extends View {
                         <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
                             <use href="/assets/icons/icons.svg#${item.icon}"/>
                         </svg>
-                        <span>${item.content}</span>
+                        <span>${item.content || 'Not Available'}</span>
                     </a>
                 </li>
             `
@@ -37,7 +37,7 @@ class UserView extends View {
                     <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
                         <use href="/assets/icons/icons.svg#${item.icon}"/>
                     </svg>
-                    <span>${item.content ?? 'Not Available'}</span>
+                    <span>${item.content || 'Not Available'}</span>
                 </p>
             </li>
         `
@@ -47,7 +47,7 @@ class UserView extends View {
         return `
             <div class="[ user__wrapper ] [ flow ] [ bg-primary-1 d-grid radius-2 size-fluid-7 ]">
                 <div class="[ user__header ] [ flow ] [ align-items-center d-flex//below-md ]">
-                    <img class="[ user__avatar ] [ radius-circle ]" src="${this._data.avatar}" alt="" aria-hidden="true">
+                    <img class="[ user__avatar ] [ radius-circle ]" src="${this._data.avatar}" alt="" width="117" height="177" aria-hidden="true">
                     <div class="[ user__info ] [ flow ] [ size-1 ]">
                         <h2 class="clr-secondary-2 f-size-fluid-6 fw-bold line-height-1">${this._data.fullname}</h2>
                         <a class="user__username" href="${this._data.url}" target="_blank">${this._data.username}</a>

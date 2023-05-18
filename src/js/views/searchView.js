@@ -2,10 +2,6 @@ import View from './View.js';
 class SearchView extends View {
     _parentElement = document.getElementById('search');
 
-    constructor() {
-        super();
-    }
-
     getQuery() {
         const query = this._parentElement.querySelector('input').value;
         this._clearInput();
