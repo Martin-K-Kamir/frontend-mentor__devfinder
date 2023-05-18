@@ -10,13 +10,12 @@ class UserHistoryView extends View {
             const btn = e.target.closest('.btn');
             const list = e.target.closest('#history-list');
 
-
-            if (!btn || btn.dataset.handle !== 'remove' || !list && list.childElementCount !== 1) return;
+            if (!btn || btn.dataset.handle !== 'remove' || list.childElementCount !== 1) return;
 
             handler();
 
             messageView.render({
-                message: 'You have no bookmarks left.',
+                message: 'You have no history',
                 type: 'default'
             });
         });
@@ -27,14 +26,14 @@ class UserHistoryView extends View {
             const btn = e.target.closest('.btn');
             const user = e.target.closest('[data-type="user"]');
             const list = e.target.closest('#history-list');
+
             if (!btn || btn.dataset.handle !== 'remove') return;
 
             handler(+user.dataset.id);
 
-            if (list.childElementCount !== 0) return;
+            if (list.childElementCount === 1) return;
 
             user.remove();
-
         });
     }
 
@@ -49,7 +48,7 @@ class UserHistoryView extends View {
     _generateMarkupUser(user) {
         return `
             <li data-id="${user.id}" data-type="user" class="direction-row justify-content-between align-items-center">
-                <a href="${user.username}">${user.username}</a>
+                <a href="#${user.username}">${user.username}</a>
                 <div class="flow direction-row align-items-center">
                     <p>${user.searched}</p>
                     <button class="btn" data-type="secondary" data-handle="remove">

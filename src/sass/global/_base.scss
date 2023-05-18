@@ -131,7 +131,7 @@ body {
 	color            : var(--clr-secondary-1);
 	background-color : var(--clr-primary-2);
 	padding-block    : var(--size-fluid-9);
-	overflow-y       : scroll;
+	overflow-y       : overlay;
 }
 
 ::-webkit-scrollbar {

@@ -8,18 +8,25 @@ class NavigationView extends View {
 
     historyActive = false;
     bookmarksActive = false;
-    themeActive = 'dark';
+    debounceTimer;
 
     handleHistoryToggle(handler1, handler2) {
         this._parentElement.addEventListener('click', (e) => {
             const btn = e.target.closest('.btn');
             if (!btn || btn.dataset.handle !== 'history') return;
+            btn.dataset.state = 'disabled';
 
             if (!this.historyActive) {
                 handler1();
             } else {
                 handler2();
             }
+
+            if (this.debounceTimer) clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => {
+                btn.dataset.state = 'enabled';
+                this.debounceTimer = null;
+            }, 500);
         });
     }
 
@@ -27,12 +34,19 @@ class NavigationView extends View {
         this._parentElement.addEventListener('click', (e) => {
             const btn = e.target.closest('.btn');
             if (!btn || btn.dataset.handle !== 'bookmarks') return;
+            btn.dataset.state = 'disabled';
 
             if (!this.bookmarksActive) {
                 handler1();
             } else {
                 handler2();
             }
+
+            if (this.debounceTimer) clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => {
+                btn.dataset.state = 'enabled';
+                this.debounceTimer = null;
+            }, 500);
         });
     }
 

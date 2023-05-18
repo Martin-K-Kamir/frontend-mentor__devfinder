@@ -85,7 +85,6 @@ export function getUserObject(data) {
 
 export async function getUserData(username) {
     try {
-        // return await getJSON(`${API_URL}/${username}`);
         return await getJSON(username);
     } catch (err) {
         throw err;

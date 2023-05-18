@@ -9,6 +9,7 @@
 	align-items      : center;
 	cursor           : pointer;
 	border           : none;
+	user-select      : none;
 
 	font-size        : var(--_font-size);
 	font-weight      : var(--_font-weight);
@@ -28,6 +29,10 @@
 		inline-size : 1.825em;
 	}
 
+}
+
+.btn[data-state='disabled'] {
+	pointer-events : none;
 }
 
 [data-type='primary'].btn {

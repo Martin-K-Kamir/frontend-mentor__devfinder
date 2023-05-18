@@ -10,11 +10,15 @@ async function controlLoadingUser() {
     try {
         const locationId = window.location.hash.slice(1) || null;
 
-        const data = await model.getUserData(locationId ?? model.state.query);
+        let data, userObj;
 
-        const userObj = model.getUserObject(data)
+        const historyUserObj = model.state.history.find(user => user.username === locationId)
+        if (!historyUserObj) {
+            data = await model.getUserData(locationId ?? model.state.query);
+            userObj = model.getUserObject(data)
+        }
 
-        model.state.set({user: userObj});
+        model.state.set({user: historyUserObj ?? userObj});
 
         model.state.set({query: locationId ?? model.state.query});
 
@@ -198,12 +202,12 @@ function controlShowHistory() {
 }
 
 function controlHideHistory() {
-    console.log(navigationView.historyActive)
     if (!navigationView.historyActive) return;
 
     navigationView.setActiveBtn('history', false);
 
     userHistoryView.animateReveal(false);
+    1
     userView.animateFade(true);
 
     userView.render(model.state.user);
@@ -219,7 +223,6 @@ function controlHideHistory() {
 
 function controlUserHistory(id) {
     model.state.set({history: model.getHistory(model.state.user, id)});
-    console.log(model.state.history)
     model.store('history', model.state.history);
     model.store('query', model.state.query);
 }
@@ -294,19 +297,25 @@ function controlToggleTheme() {
 
 const init = function () {
     userView.handleLoad(controlLoadingUser);
+    userView.handleLoad(controlHideHistory);
     userView.handleBookmarkClick(controlUserBookmarks);
-    userBookmarksView.handleBookmarkClick(controlUserBookmarks);
+
+    userHistoryView.handleRemoveLastClick(controlHideHistory);
     userHistoryView.handleRemoveClick(controlUserHistory);
-    userBookmarksView.handleBookmarkLastClick(controlHideBookmarks);
-    userBookmarksView.handleCloseClick(controlHideBookmarks);
     userHistoryView.handleCloseClick(controlHideHistory);
-    userBookmarksView.handleDeleteClick(controlDeleteBookmarks);
     userHistoryView.handleDeleteClick(controlDeleteHistory);
-    userBookmarksView.handleDeleteClick(controlHideBookmarks);
     userHistoryView.handleDeleteClick(controlHideHistory);
+
+    userBookmarksView.handleBookmarkLastClick(controlHideBookmarks);
+    userBookmarksView.handleBookmarkClick(controlUserBookmarks);
+    userBookmarksView.handleCloseClick(controlHideBookmarks);
+    userBookmarksView.handleDeleteClick(controlDeleteBookmarks);
+    userBookmarksView.handleDeleteClick(controlHideBookmarks);
+
     searchView.handleSearch(controlSearchingUser);
     searchView.handleSearch(controlHideBookmarks);
     searchView.handleSearch(controlHideHistory);
+
     navigationView.handleThemeChange(controlPreferredTheme);
     navigationView.handleThemeClick(controlToggleTheme);
     navigationView.handleBookmarksToggle(controlShowBookmarks, controlHideBookmarks);

@@ -12,8 +12,7 @@ class UserBookmarksView extends View {
             const btn = e.target.closest('.btn');
             const list = e.target.closest('#bookmarks-list');
 
-            console.log(!btn || btn.dataset.handle !== 'bookmark' || !list && list.childElementCount !== 1)
-            if (!btn || btn.dataset.handle !== 'bookmark' || !list && list.childElementCount !== 1) return;
+            if (!btn || btn.dataset.handle !== 'bookmark' || list.childElementCount !== 1) return;
 
             handler();
 
@@ -34,7 +33,7 @@ class UserBookmarksView extends View {
 
             handler(+user.dataset.id);
 
-            if (list.childElementCount !== 0) return;
+            if (list.childElementCount === 1) return;
 
             user.remove();
         });
