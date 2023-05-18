@@ -1,12 +1,12 @@
 {
-  "name": "devfinder",
+  "name": "Search awesome developers",
   "short_name": "devfinder",
+  "description": "Search users profiles from github.com",
   "theme_color": "#fff",
   "background_color": "#fff",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "any",
-  "scope": "/",
-  "start_url": "/",
+  "start_url": "/index.html",
   "icons": [
     {
       "src": "assets/favicons/icon-72x72.png",

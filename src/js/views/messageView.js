@@ -16,6 +16,19 @@ class MessageView extends View {
                 this.hide();
             }
         })
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+            .register('/sw.js')
+            .then(() => {
+
+                console.log('Service Worker Registered');
+
+                setTimeout(() => {
+                    this.render('Service Worker Registeredasdasd', 'success');
+                } , 3000);
+            });
+        }
     }
 
     hide() {
