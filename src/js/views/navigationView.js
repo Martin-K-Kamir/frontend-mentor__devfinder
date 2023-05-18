@@ -10,6 +10,19 @@ class NavigationView extends View {
     bookmarksActive = false;
     themeActive = 'dark';
 
+    handleHistoryToggle(handler1, handler2) {
+        this._parentElement.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn');
+            if (!btn || btn.dataset.handle !== 'history') return;
+
+            if (!this.historyActive) {
+                handler1();
+            } else {
+                handler2();
+            }
+        });
+    }
+
     handleBookmarksToggle(handler1, handler2) {
         this._parentElement.addEventListener('click', (e) => {
             const btn = e.target.closest('.btn');
@@ -21,6 +34,14 @@ class NavigationView extends View {
                 handler2();
             }
         });
+    }
+
+    handleHistoryClick(handler) {
+        this._btnClick(handler, 'history');
+    }
+
+    handleBookmarksClick(handler) {
+        this._btnClick(handler, 'bookmarks');
     }
 
     handleThemeClick(handler) {

@@ -20,13 +20,30 @@ export const state = new State({
 });
 
 function formatDate(date) {
-    const options = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-    };
+    const today = new Date();
+    const targetDate = new Date(date);
 
-    return new Intl.DateTimeFormat(navigator.language, options).format(new Date(date)).replaceAll(' ', '');
+    const isSameDay = (
+        today.getFullYear() === targetDate.getFullYear() &&
+        today.getMonth() === targetDate.getMonth() &&
+        today.getDate() === targetDate.getDate()
+    );
+
+    const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+    const timeDiff = Math.floor((today - targetDate) / oneDay);
+
+    if (isSameDay) {
+        return 'today';
+    } else if (timeDiff === 1) {
+        return 'yesterday';
+    } else if (timeDiff > 3) {
+        const options = {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        };
+        return new Intl.DateTimeFormat(navigator.language, options).format(targetDate).replaceAll(' ', '');
+    }
 }
 
 export function getUserObject(data) {
@@ -42,6 +59,7 @@ export function getUserObject(data) {
         followers: data.followers,
         following: data.following,
         bookmarked: state.bookmarks.find(user => user.id === data.id) ? true : false,
+        searched: formatDate(new Date()),
         links: [
             {
                 icon: 'location',
@@ -74,7 +92,11 @@ export async function getUserData(username) {
     }
 }
 
-export function getHistory(userObj) {
+export function getHistory(userObj, id) {
+    if (state.history.find(user => user.id === id)) {
+        return [...state.history.filter(user => user.id !== id)];
+    }
+
     if (state.history.at(-1)?.id === userObj.id) return [...state.history];
 
     if (state.history.find(user => user.id === userObj.id)) {

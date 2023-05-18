@@ -1,6 +1,7 @@
 import * as model from './model.js';
 import userView from './views/userView.js';
 import userBookmarksView from './views/userBookmarksView.js';
+import userHistoryView from './views/userHistoryView.js';
 import searchView from './views/searchView.js';
 import messageView from './views/messageView.js';
 import navigationView from './views/navigationView.js';
@@ -122,6 +123,10 @@ function controlShowBookmarks() {
         return;
     }
 
+    if (navigationView.historyActive) {
+        controlHideHistory();
+    }
+
     window.history.pushState(null, '', ' ');
 
     navigationView.setActiveBtn('bookmarks', true);
@@ -169,13 +174,52 @@ function controlShowHistory() {
         return;
     }
 
+    if (navigationView.bookmarksActive) {
+        controlHideBookmarks();
+    }
+
     window.history.pushState(null, '', ' ');
 
     navigationView.setActiveBtn('history', true);
+
+    userHistoryView.render(model.state.history);
+
+    userHistoryView.animateReveal(true);
+
+    if (userView.timerId) clearTimeout(userView.timerId);
+
+    userView.timerId = setTimeout(() => {
+        userView.animateFade(false);
+
+        setTimeout(() => {
+            userView.clear();
+        }, 500)
+    }, 30);
 }
 
-function controlUserHistory() {
-    model.state.set({history: model.getHistory(model.state.user)});
+function controlHideHistory() {
+    console.log(navigationView.historyActive)
+    if (!navigationView.historyActive) return;
+
+    navigationView.setActiveBtn('history', false);
+
+    userHistoryView.animateReveal(false);
+    userView.animateFade(true);
+
+    userView.render(model.state.user);
+
+    window.history.pushState(null, '', `#${model.state.user.username}`);
+
+    if (userHistoryView.timerId) clearTimeout(userHistoryView.timerId);
+
+    userHistoryView.timerId = setTimeout(() => {
+        userHistoryView.clear()
+    }, 500)
+}
+
+function controlUserHistory(id) {
+    model.state.set({history: model.getHistory(model.state.user, id)});
+    console.log(model.state.history)
     model.store('history', model.state.history);
     model.store('query', model.state.query);
 }
@@ -194,6 +238,15 @@ function controlDeleteBookmarks() {
     model.store('bookmarks', model.state.bookmarks);
     messageView.render({
         message: 'Bookmarks deleted.',
+        type: 'success'
+    });
+}
+
+function controlDeleteHistory() {
+    model.state.set({history: []});
+    model.store('history', model.state.history);
+    messageView.render({
+        message: 'History deleted.',
         type: 'success'
     });
 }
@@ -243,14 +296,20 @@ const init = function () {
     userView.handleLoad(controlLoadingUser);
     userView.handleBookmarkClick(controlUserBookmarks);
     userBookmarksView.handleBookmarkClick(controlUserBookmarks);
+    userHistoryView.handleRemoveClick(controlUserHistory);
     userBookmarksView.handleBookmarkLastClick(controlHideBookmarks);
     userBookmarksView.handleCloseClick(controlHideBookmarks);
+    userHistoryView.handleCloseClick(controlHideHistory);
     userBookmarksView.handleDeleteClick(controlDeleteBookmarks);
+    userHistoryView.handleDeleteClick(controlDeleteHistory);
     userBookmarksView.handleDeleteClick(controlHideBookmarks);
+    userHistoryView.handleDeleteClick(controlHideHistory);
     searchView.handleSearch(controlSearchingUser);
     searchView.handleSearch(controlHideBookmarks);
+    searchView.handleSearch(controlHideHistory);
     navigationView.handleThemeChange(controlPreferredTheme);
     navigationView.handleThemeClick(controlToggleTheme);
     navigationView.handleBookmarksToggle(controlShowBookmarks, controlHideBookmarks);
+    navigationView.handleHistoryToggle(controlShowHistory, controlHideHistory);
 };
 init();

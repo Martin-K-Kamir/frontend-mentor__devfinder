@@ -12,6 +12,7 @@ class UserBookmarksView extends View {
             const btn = e.target.closest('.btn');
             const list = e.target.closest('#bookmarks-list');
 
+            console.log(!btn || btn.dataset.handle !== 'bookmark' || !list && list.childElementCount !== 1)
             if (!btn || btn.dataset.handle !== 'bookmark' || !list && list.childElementCount !== 1) return;
 
             handler();

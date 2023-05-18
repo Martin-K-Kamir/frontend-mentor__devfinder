@@ -14,22 +14,30 @@ class MessageView extends View {
 
             if (btn.dataset.handle === 'close') {
                 this.hide();
-
-                if (this.timerId) clearTimeout(this.timerId);
             }
         })
     }
 
     hide() {
         this._parentElement.dataset.visible = false;
+
+        if (this.timerId) clearTimeout(this.timerId);
+
+        this.timerId = setTimeout(() => {
+            this._parentElement.ariaHidden = true;
+            this.clear();
+        }, 300);
     }
 
     show(data) {
         this._parentElement.dataset.visible = true;
+        this._parentElement.ariaHidden = false;
         this._parentElement.dataset.type = data?.type ?? 'default';
     }
 
     _generateMarkup() {
+        this._parentElement.ariaHidden = false;
+
         return `
             <div class="[ message__wrapper ] [ flow ] [ size-3 d-flex align-items-center ]">
                 <div class="[ message__content ] [ justify-items-center//above-md ]">

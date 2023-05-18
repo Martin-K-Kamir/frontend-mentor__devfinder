@@ -1,17 +1,17 @@
 import View from './View.js';
 import messageView from './messageView.js';
-import userView from './userView.js';
 
 class UserHistoryView extends View {
-    _parentElement = document.getElementById('history');
-    _renderElement = document.querySelector('#user-bookmarks > div');
+    _parentElement = document.getElementById('user-history');
+    _renderElement = document.querySelector('#user-history > div');
 
     handleRemoveLastClick(handler) {
         this._parentElement.addEventListener('click', e => {
             const btn = e.target.closest('.btn');
-            const list = e.target.closest('#bookmarks-list');
+            const list = e.target.closest('#history-list');
 
-            if (!btn || btn.dataset.handle !== 'bookmark' || !list && list.childElementCount !== 1) return;
+
+            if (!btn || btn.dataset.handle !== 'remove' || !list && list.childElementCount !== 1) return;
 
             handler();
 
@@ -25,16 +25,16 @@ class UserHistoryView extends View {
     handleRemoveClick(handler) {
         this._parentElement.addEventListener('click', e => {
             const btn = e.target.closest('.btn');
-            const user = e.target.closest('.user');
-            const list = e.target.closest('#bookmarks-list');
-
-            if (!btn || btn.dataset.handle !== 'bookmark') return;
+            const user = e.target.closest('[data-type="user"]');
+            const list = e.target.closest('#history-list');
+            if (!btn || btn.dataset.handle !== 'remove') return;
 
             handler(+user.dataset.id);
 
             if (list.childElementCount !== 0) return;
 
             user.remove();
+
         });
     }
 
@@ -48,10 +48,10 @@ class UserHistoryView extends View {
 
     _generateMarkupUser(user) {
         return `
-            <li class="direction-row justify-content-between align-items-center">
+            <li data-id="${user.id}" data-type="user" class="direction-row justify-content-between align-items-center">
                 <a href="${user.username}">${user.username}</a>
                 <div class="flow direction-row align-items-center">
-                    <span>${user.date}</span>
+                    <p>${user.searched}</p>
                     <button class="btn" data-type="secondary" data-handle="remove">
                         <span class="sr-only">remove</span>                    
                         <svg class="icon" focusable="false" width="1em" height="1em" aria-hidden="true">
@@ -82,7 +82,7 @@ class UserHistoryView extends View {
                         </svg>
                     </button>
                 </div>
-                <ul role="list" class="[ table ] [ flow ] [ bg-primary-1 clr-secondary-1 radius-2 size-fluid-3 ]">
+                <ul role="list" id="history-list" class="[ table ] [ flow ] [ bg-primary-1 clr-secondary-1 radius-2 size-fluid-3 ]">
                     ${[...this._data].reverse().map(this._generateMarkupUser).join('')}
                 </ul>
             </div>
