@@ -13,9 +13,7 @@
     "postcss-load-config": "^4.0.1",
     "postcss-preset-env": "^8.3.2",
     "sass": "^1.62.1",
-    "vite": "^4.3.2"
-  },
-  "dependencies": {
+    "vite": "^4.3.2",
     "vite-plugin-pwa": "^0.15.0"
   }
 }
