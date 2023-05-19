@@ -52,7 +52,12 @@ async function controlLoadingUser() {
             })
         }
 
-        userView.renderMessage(':(')
+        if (!navigator.onLine) {
+            messageView.render({
+                message: 'You are offline. Please check your internet connection! <br> In the meantime, you can check the history of your previous searches or bookmarked users.',
+                type: 'error',
+            })
+        }
     }
 }
 
