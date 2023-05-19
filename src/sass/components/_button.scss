@@ -4,6 +4,7 @@
 	--_font-weight   : var(--btn-f-weight, var(--f-weight, bold));
 	--_clr           : var(--btn-clr, var(--clr, hsl(0, 0%, 100%)));
 	--_bg            : var(--btn-bg, var(--bg, hsl(0, 0%, 0%)));
+	--_bg-active     : var(--btn-bg-active, var(--bg-active, hsl(0, 0%, 0%)));
 
 	display          : inline-flex;
 	align-items      : center;
@@ -29,48 +30,56 @@
 		inline-size : 1.825em;
 	}
 
+	&[data-active='true'] {
+		background-color : var(--_bg-active);
+	}
+
+	@media (--mouse) {
+		&:hover {
+			background-color : var(--_bg-active);
+		}
+	}
 }
 
 .btn[data-state='disabled'] {
 	pointer-events : none;
 }
 
-[data-type='primary'].btn {
-	--f-size   : var(--f-size-fluid-3);
-	--f-weight : var(--fw-bold);
-	--clr      : #FFFFFF;
-	--bg       : var(--clr-accent-1);
+.btn[data-type='primary'] {
+	--f-size    : var(--f-size-fluid-3);
+	--f-weight  : var(--fw-bold);
+	--clr       : var(--btn-primary-clr, var(--clr-white));
+	--bg        : var(--btn-primary-bg, var(--clr-accent-1));
+	--bg-active : var(--btn-primary-bg-active, color-mix(in srgb, var(--_bg) 90%, var(--clr-white)));
 
-	padding    : 0.75em 1.425em 0.825em;
-
-	@media (--mouse) {
-		&:hover {
-			background-color : color-mix(in srgb, var(--_bg) 77%, #FFFFFF);
-		}
-	}
+	padding     : 0.75em 1.425em 0.825em;
 }
 
-[data-type='secondary'].btn {
+.btn[data-type='ghost'] {
+	--f-size    : var(--f-size-fluid-3);
+	--f-weight  : var(--fw-bold);
+	--clr       : var(--btn-ghost-clr, var(--clr-accent-1));
+	--bg        : var(--btn-ghost-bg, transparent);
+	--bg-active : var(--btn-ghost-bg-active, color-mix(in srgb, var(--_bg) 90%, var(--clr-white)));
+
+	padding     : 0.75em 1.425em 0.825em;
+	box-shadow  : inset currentColor 0 0 0 0.125em;
+}
+
+.btn[data-type='secondary'] {
 	--f-size       : var(--f-size-2);
 	--f-weight     : var(--fw-bold);
-	--clr          : var(--clr-secondary-2);
-	--bg           : transparent;
-
-	--_bg-active   : color-mix(in srgb, var(--_clr) 5%, hsla(0, 0%, 53%, 0.1));
+	--clr          : var(--btn-secondary-clr, var(--clr-secondary-2));
+	--bg           : var(--btn-secondary-bg, transparent);
+	--bg-active    : var(--btn-secondary-bg-active, color-mix(in srgb, var(--_clr) 5%, hsla(0, 0%, 53%, 0.1)));
 
 	letter-spacing : 0.2em;
 	text-transform : uppercase;
 	padding        : 0.45em 1em 0.5em;
 
-
-	&[data-active='true'] {
-		--bg : var(--_bg-active);
-	}
-
-	@media (--mouse) {
-		&:hover {
-			--bg : var(--_bg-active);
-		}
+	&:focus-visible {
+		outline        : none;
+		background-color : var(--_bg-active);
 	}
 }
 

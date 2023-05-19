@@ -1,6 +1,7 @@
 import View from './View.js';
 
 class MessageView extends View {
+    _defferedPrompt;
     _parentElement = document.getElementById('message');
 
     timerId = null;
@@ -14,8 +15,36 @@ class MessageView extends View {
 
             if (btn.dataset.handle === 'close') {
                 this.hide();
+                return;
+            }
+
+            if (btn.dataset.handle === 'install') {
+                this._defferedPrompt.prompt();
+                this._defferedPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        this._data.showInstallPrompt = false;
+                        this.hide();
+                    }
+                });
+                return;
             }
         })
+    }
+
+    handleInstallPrompt(handler) {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this._defferedPrompt = e;
+            handler();
+        });
+    }
+
+    handleUserOffline(handler) {
+        window.addEventListener('offline', handler);
+    }
+
+    handleUserOnline(handler) {
+        window.addEventListener('online', handler);
     }
 
     hide() {
@@ -37,6 +66,24 @@ class MessageView extends View {
 
     _generateMarkup() {
         this._parentElement.ariaHidden = false;
+
+        if (this._data.showInstallPrompt) {
+            return `
+                <div class="[ message__wrapper ] [ flow ] [ size-5 d-flex align-items-center ]">
+                    <div class="[ message__content ] [ flow ] [ justify-items-center ]">
+                        <p class="text-center fw-bold f-size-4">${this._data.message}</p>
+                        <div class="[ flow ] [ direction-row ]">
+                        <button class="btn" data-handle="install" data-type="primary">
+                            Install
+                        </button>
+                        <button class="btn" data-handle="close" data-type="ghost">
+                            Not now
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
         return `
             <div class="[ message__wrapper ] [ flow ] [ size-3 d-flex align-items-center ]">

@@ -6,6 +6,7 @@ import searchView from './views/searchView.js';
 import messageView from './views/messageView.js';
 import navigationView from './views/navigationView.js';
 import pageLoaderView from './views/pageLoaderView.js';
+import {SHOW_INSTALL_PROMPT_LIMIT, SHOW_INSTALL_PROMPT_SEC} from './config.js';
 
 async function controlLoadingUser() {
     try {
@@ -303,8 +304,41 @@ function controlPageLoad() {
     }, 500)
 }
 
+function controlInstallPrompt() {
+    setTimeout(() => {
+        if (model.state.installPromptCount >= SHOW_INSTALL_PROMPT_LIMIT) return;
+
+        model.state.set({installPromptCount: model.state.installPromptCount + 1});
+
+        model.store('installPromptCount', model.state.installPromptCount);
+
+        messageView.render({
+            showInstallPrompt: true,
+            message: 'Install this app on your device for a better experience.',
+        });
+    }, SHOW_INSTALL_PROMPT_SEC * 1000);
+}
+
+function controlOffline() {
+    messageView.render({
+        message: 'You are offline. Please check your internet connection! <br> In the meantime, you can check the history of your previous searches or bookmarked users.',
+        type: 'warning'
+    });
+}
+
+function controlOnline() {
+    messageView.render({
+        message: 'You are online.',
+        type: 'success'
+    });
+}
+
 const init = function () {
     pageLoaderView.handleLoad(controlPageLoad);
+
+    messageView.handleInstallPrompt(controlInstallPrompt);
+    messageView.handleUserOffline(controlOffline);
+    messageView.handleUserOnline(controlOnline);
 
     userView.handleLoad(controlLoadingUser);
     userView.handleLoad(controlHideHistory);

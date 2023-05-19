@@ -20,6 +20,9 @@
 @custom-media --below-xxl (width < 120em);
 
 :root {
+	--clr-white       : hsl(0, 0%, 100%);
+	--clr-black       : hsl(0, 0%, 0%);
+
 	--clr-primary-1   : hsl(0, 0%, 100%);
 	--clr-primary-2   : hsl(227, 100%, 98%);
 	--clr-secondary-1 : hsl(217, 35%, 45%);
@@ -29,7 +32,7 @@
 	--clr-success     : hsl(122, 39%, 49%);
 	--clr-warning     : hsl(31, 100%, 48%);
 	--clr-shadow      : hsla(227, 46%, 50%, 0.2);
-	--clr-invert      : hsl(0, 0%, 0%);
+	--clr-invert      : var(--clr-black);
 
 	@media (--OSdark) {
 		--clr-primary-1   : hsl(222, 41%, 20%);
@@ -37,7 +40,7 @@
 		--clr-secondary-1 : hsl(0, 0%, 100%);
 		--clr-secondary-2 : hsl(0, 0%, 100%);
 		--clr-shadow      : hsla(0, 0%, 0%, 0.55);
-		--clr-invert      : hsl(0, 0%, 100%);
+		--clr-invert      : var(--clr-white);
 	}
 
 	--ff-primary      : 'Space Mono', monospace;

@@ -1,4 +1,14 @@
 //////////////////// Colors /////////////////////
+.clr-white {
+	color : var(--clr-white);
+	--clr : var(--clr-white)
+}
+
+.clr-black {
+	color : var(--clr-black);
+	--clr : var(--clr-black)
+}
+
 .clr-primary-1 {
 	color : var(--clr-primary-1);
 	--clr : var(--clr-primary-1)
@@ -27,6 +37,16 @@
 .clr-error {
 	color : var(--clr-error);
 	--clr : var(--clr-error)
+}
+
+.bg-white {
+	background-color : var(--clr-white);
+	--bg              : var(--clr-white)
+}
+
+.bg-black {
+	background-color : var(--clr-black);
+	--bg              : var(--clr-black)
 }
 
 .bg-primary-1 {

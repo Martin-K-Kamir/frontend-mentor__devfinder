@@ -18,6 +18,7 @@ export const state = new State({
     bookmarks: [],
     history: [],
     theme: '',
+    installPromptCount: 0,
 });
 
 function formatDate(date) {
@@ -129,16 +130,16 @@ function init() {
     const bookmarks = restore('bookmarks');
     const history = restore('history');
     const query = restore('query');
+    const installPromptCount = restore('installPromptCount');
 
     if (bookmarks) state.set({bookmarks});
     if (history) state.set({history});
     if (query) state.set({query});
+    if (installPromptCount) state.set({installPromptCount});
+
+    if ("serviceWorker" in navigator) {
+        // && !/localhost/.test(window.location)) {
+        registerSW();
+    }
 }
 init();
-
-
-
-if ("serviceWorker" in navigator) {
-    // && !/localhost/.test(window.location)) {
-    registerSW();
-}
