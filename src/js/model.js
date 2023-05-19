@@ -1,5 +1,6 @@
 import {getJSON} from './utils.js';
 import {API_URL, INIT_USER, HISTORY_LIMIT} from './config.js';
+import { registerSW } from "virtual:pwa-register";
 
 class State {
     constructor(initValue) {
@@ -134,3 +135,10 @@ function init() {
     if (query) state.set({query});
 }
 init();
+
+
+
+if ("serviceWorker" in navigator) {
+    // && !/localhost/.test(window.location)) {
+    registerSW();
+}
