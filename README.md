@@ -48,6 +48,6 @@ Ultimately, I consider this challenge project from Frontend Mentor to be a signi
 - Live Site URL - [Link](https://devfinder-martinkamir.netlify.app/)
 - My website - [Martin Kamír](https://martinkamir.com/)
 - Frontend Mentor - [@Martin-K-Kamir](https://www.frontendmentor.io/profile/Martin-K-Kamir)
-- Frontend Mentor Solution - [Solution link](https://www.frontendmentor.io/solutions/dine-restaurant-website-pq6hc0PXN9)
+- Frontend Mentor Solution - [Solution link](https://www.frontendmentor.io/solutions/devfinder-app-js-scss-vite-pwa-zNcsGwcuwt)
 
 Happy coding! 😄
