@@ -22,30 +22,13 @@ export const state = new State({
 });
 
 function formatDate(date) {
-    const today = new Date();
-    const targetDate = new Date(date);
+    const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    };
 
-    const isSameDay = (
-        today.getFullYear() === targetDate.getFullYear() &&
-        today.getMonth() === targetDate.getMonth() &&
-        today.getDate() === targetDate.getDate()
-    );
-
-    const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
-    const timeDiff = Math.floor((today - targetDate) / oneDay);
-
-    if (isSameDay) {
-        return 'today';
-    } else if (timeDiff === 1) {
-        return 'yesterday';
-    } else if (timeDiff > 3) {
-        const options = {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-        };
-        return new Intl.DateTimeFormat(navigator.language, options).format(targetDate).replaceAll(' ', '');
-    }
+    return new Intl.DateTimeFormat(navigator.language, options).format(new Date(date)).replaceAll(' ', '');
 }
 
 export function getUserObject(data) {
