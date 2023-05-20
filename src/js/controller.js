@@ -313,7 +313,12 @@ function controlPageLoad() {
 
 function controlInstallPrompt() {
     setTimeout(() => {
-        if (model.state.installPromptCount >= SHOW_INSTALL_PROMPT_LIMIT) return;
+        if (model.state.installPromptCount >= SHOW_INSTALL_PROMPT_LIMIT){
+            model.state.set({lastPromptDate: Date.now()});
+            model.store('lastPromptDate', model.state.lastPromptDate);
+            model.resetInstallPromptCount();
+            return;
+        };
 
         model.state.set({installPromptCount: model.state.installPromptCount + 1});
 

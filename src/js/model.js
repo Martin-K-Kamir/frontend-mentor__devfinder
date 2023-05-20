@@ -126,16 +126,28 @@ export function restore(location) {
     return JSON.parse(localStorage.getItem(location));
 }
 
+export function resetInstallPromptCount() {
+    const lastPromptDate = state.lastPromptDate;
+    const currentDate = new Date().getTime();
+
+    // If there is no last prompt date or it has been more than 15 days, reset the count
+    if (!lastPromptDate || (currentDate - lastPromptDate) > 15 * 24 * 60 * 60 * 1000) {
+        state.set({installPromptCount: 0});
+    }
+}
+
 function init() {
     const bookmarks = restore('bookmarks');
     const history = restore('history');
     const query = restore('query');
     const installPromptCount = restore('installPromptCount');
+    const lastPromptDate = restore('lastPromptDate');
 
     if (bookmarks) state.set({bookmarks});
     if (history) state.set({history});
     if (query) state.set({query});
     if (installPromptCount) state.set({installPromptCount});
+    if (lastPromptDate) state.set({lastPromptDate});
 
     if ("serviceWorker" in navigator) {
         // && !/localhost/.test(window.location)) {
