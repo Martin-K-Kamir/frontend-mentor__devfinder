@@ -1,5 +1,5 @@
 import {API_TOKEN, TIMEOUT_SEC} from './config.js';
-import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+import { Octokit } from "octokit";
 
 const timeout = function (s) {
     return new Promise(function (_, reject) {
