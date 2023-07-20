@@ -43,7 +43,7 @@ export function getUserObject(data) {
         repos: data.public_repos,
         followers: data.followers,
         following: data.following,
-        bookmarked: state.bookmarks.find(user => user.id === data.id) ? true : false,
+        bookmarked: !!state.bookmarks.find(user => user.id === data.id),
         searched: formatDate(new Date()),
         links: [
             {
